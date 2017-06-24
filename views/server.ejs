@@ -1,7 +1,6 @@
+<% include layout-head %>
 
- <% include layout-head %>
-
- <link href="../vendors/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../vendors/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="../vendors/css/album.css">
   <link rel="stylesheet" href="../vendors/css/morris.css">
 
@@ -14,7 +13,7 @@
   <script src="../vendors/js/morris.js"></script>
   <script src="./js/main.js"></script>
 
- <script>
+  <script>
     $(function() {
       $('#knobconections').knob();
     });
@@ -28,7 +27,7 @@
       $('#memavail').knob();
     });
   </script>
-    <!-- Page Content -->
+  <!-- Page Content -->
 
   <div class="container" style="margin-top: 100px;">
     <div class="col-sm-3">
@@ -56,13 +55,16 @@
       </center>
     </div>
   </div>
-    <!-- /.container -->
-<div align="center">
 
-<h5 style="text-align: justify; margin-left: 50px; margin-right: 10pc; font-family: cursive;">
-<p> <strong>INFORMAÇÃO :</strong></p>
-<p> - Controle do servidor <strong style="font-size: 20px;">NGnix</strong>, onde demostra a fluxo de informação a correr no servidor e as suas subcargas.</p>
-<p> - Esta <strong style="font-size: 20px;">gestão</strong> é importante para os processos que estão a decorrer, podendo aliviar ou gerir as cargas efetuadas no servidor.</p>
-</h5>
-</div>
-<% include layout-foot.ejs %>
+  <!-- /.container -->
+
+
+  <div class="container">
+    <hr />
+    <br />
+    <h4><b>Informação:</b></h4>
+    <span>- Controle do servidor <strong style="font-size: 20px;">NGnix</strong>, onde demostra a fluxo de informação a correr no servidor e as suas subcargas.</span>
+    <p><span>- Esta <strong style="font-size: 20px;">gestão</strong> é importante para os processos que estão a decorrer, podendo aliviar ou gerir as cargas efetuadas no servidor.</span></p>
+  </div>
+
+  <% include layout-foot.ejs %>
