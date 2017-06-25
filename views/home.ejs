@@ -38,8 +38,6 @@
                   <span class="icon-bar"></span>
               </button>
         <a class="navbar-brand" href="start">
-
-
                    <img src="imgs/NGINX.png" alt="NGINX" height="50" width="150">
               </a>
       </div>
@@ -49,7 +47,6 @@
           <% if (!user) { %>
             <li><a href="/login"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
             <% } else { %>
-
               <li><a href="/profile"><i class="glyphicon glyphicon-log-in"></i> <%= user.username %></a></li>
               <% } %>
         </ul>
