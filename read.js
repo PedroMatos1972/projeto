@@ -15,7 +15,7 @@ console.log("---------------------");
 //module.exports.loadJson = function (file, callback) {
   fs.readFile('dados.json', { encoding: 'utf8' }, function (err, data) {
     if (err); // file reading error
-    
+
       // parse and return json to callback
       var json = JSON.parse(data);
 		console.log(json.username);
@@ -23,7 +23,7 @@ console.log("---------------------");
 console.log("---- dentro-------");
 
 
-  
-    
+
+
   });
 //};
