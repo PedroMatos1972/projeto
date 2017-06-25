@@ -9,17 +9,9 @@
   <meta name="author" content="">
 
   <title>NGINX</title>
-  <!-- Latest compiled and minified CSS -->
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <!-- Bootstrap Core CSS -->
-  <!--<link href="../css/bootstrap.min.css" rel="stylesheet">-->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom CSS -->
   <link href="../css/logo-nav.css" rel="stylesheet">
@@ -52,9 +44,9 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <% if (!user) { %>
-            <li><a href="/login"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
+            <li><a href="/login"><i class="fa fa-sign-out"></i> Login</a></li>
             <% } else { %>
-              <li><a href="/profile"><i class="glyphicon glyphicon-log-in"></i> <%= user.username %></a></li>
+              <li><a href="/profile"><i class="fa fa-sign-out"></i> <%= user.username %></a></li>
               <% } %>
         </ul>
       </div>
@@ -77,13 +69,16 @@
     </div>
   </div>
   <!-- /.container -->
-  <footer class="text-muted" style="margin-top: 100px;">
+  <div class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
+      <p class="navbar-text pull-left"><strong>NGinx Portal</strong> &copy; Bootstrap Responsive - PC and Mobile 2017
+      </p>
 
-      <p>NGinx Portal &copy; Bootstrap, but please download and customize it for yourself!</p>
-      <p>Work made by: Paulo Rodrigues | Pedro Matos | Vasco Marques | 2017</p>
+      <p class="navbar-text pull-right">
+        <strong>Work made by:</strong> Paulo Rodrigues | Pedro Matos | Vasco Marques
+      </p>
     </div>
-  </footer>
+  </div>
   <!-- jQuery -->
   <script src="js/jquery.js"></script>
 
