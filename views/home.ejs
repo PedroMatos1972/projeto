@@ -9,7 +9,8 @@
   <meta name="author" content="">
 
   <title>NGINX</title>
-
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Bootstrap Core CSS -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -44,23 +45,14 @@
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <% if (!user) { %>
-            <li>
-              <a href="/login" style="color: white;">Login</a>
-              <% } else { %>
-            </li>
-            <li>
-              <p style="margin-left: 50px; color: white;">Welcome,
-                <%= user.username %>. View your <a href="/profile">Dashboard</a>.</p>
-
-            </li>
-            <% } %>
-        </ul>
         <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
+          <% if (!user) { %>
+            <li><a href="/login"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
+            <% } else { %>
+
+              <li><a href="/profile"><i class="glyphicon glyphicon-log-in"></i> <%= user.username %></a></li>
+              <% } %>
+        </ul>
       </div>
       <!-- /.navbar-collapse -->
     </div>
