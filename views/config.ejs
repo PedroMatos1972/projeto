@@ -177,13 +177,11 @@
             <div id="confvhosts" class="panel-collapse panel-collapse collapse">
               <div class="panel-body">
                 <!-- INIT VHosts -->
-
                 <div class="row">
                   <div class="col-md-12">
                     <button id="btn-add-tab" type="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i></button>
 
                     <!-- Nav tabs -->
-
                     <div id="tabs">
                       <ul id="tab-list" class="nav nav-tabs" role="tablist" data-tabs="tabs">
 
@@ -214,10 +212,10 @@
                               </div>
                               <div class="checkbox">
                                 <label>
-                        <div class="form-input">
-                          <input type="checkbox" id="cachemv"> Static assets cache
-                        </div>
-                   </label>
+                                  <div class="form-input">
+                                    <input type="checkbox" id="cachemv"> Static assets cache
+                                  </div>
+                                </label>
                               </div>
                           </div>
                           </form>
@@ -234,15 +232,36 @@
             </div>
           </div>
         </div>
-        <button id="conectNginx" type="button" class="btn btn-success">Create Host</button>
-        <div class="mensagem" id="mensagem"></div>
+        <div class="container">
+          <!--<button id="conectNginx" type="button" class="btn btn-success">Create Host</button>-->
+          <!--<div class="mensagem" id="mensagem"></div>-->
+
+          <a id="conectNginx" class="btn btn-success" href="#success" data-toggle="modal"><h4><i class="glyphicon glyphicon-saved"></i> Create Host</h4></a>
+          <!-- Modal -->
+          <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header modal-header-success">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h1><i class="glyphicon glyphicon glyphicon-saved"></i> Success Create Mutliple Hosts</h1>
+                </div>
+                <div class="modal-body">
+                  <div class="mensagem" id="mensagem"></div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
+          <!-- Modal -->
+        </div>
       </div>
     </div>
   </div>
-
-
-
   <!-- /.container -->
-
 
   <% include layout-foot.ejs %>
