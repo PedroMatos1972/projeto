@@ -73,8 +73,8 @@ app.get('/login',
   function(req, res){
     res.render('login');
   });
-  
-app.post('/login', 
+
+app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/start');
@@ -143,10 +143,16 @@ app.use('/users', users);
 //
 //
 app.post('/folder', function(req, res) {
-  var configuracoes = exec('sh script_nginx.sh', function(err, stdout, stderr){
-    console.log("Ficheiros  Nginx:" + stdout);
-  });
-  });
+    var output = cp.spawnSync('sh', ['scripts/script_listap.sh'], {
+      encoding: 'utf8'
+    });
+    console.log("Ficheiros  Nginx:" + output.stdout.toString());
+    res.send({
+      'status': 'ok',
+      'stdout': output.stdout.toString(),
+      'stderr': output.stderr.toString(),
+    });
+    });
 
   app.post('/nginx/reload', function(req, res) {
   var output = cp.spawnSync('/usr/sbin/nginx', ['-s', 'reload'], {
@@ -245,18 +251,17 @@ app.post('/host', function(req, res) {
     });
   });
 });
-//-------- repetido !? ---------- do de cima
+// Creat Multiple hosts
 app.post('/hosts', function(req, res) {
   console.log(req.body);
 
-  var confcontent = utils.prepareConf('simpleproxy', {
-    'SERVERNAME': req.body.hosts,
-    'PORT': req.body.ports,
-    'PROXY': req.body.destinations,
-    'CACHE': req.body.caches === true ? 'include /etc/nginx/dashboard/cache.conf;' : ''
+  var confcontent = utilsmh.prepareConf('simpleproxy', {
+  /*  'SERVERNAME': req.body//.host//,
+    //'PORT': req.body.port,
+    //'PROXY': req.body.destination,
+    //'CACHE': req.body.cache === true ? 'include /etc/nginx/dashboard/cache.conf;' : ''
   });
-
-  fs.writeFile('/etc/nginx/conf.d/' + req.body.hosts + '.conf', confcontent, function(err) {
+  fs.writeFile('/etc/nginx/conf.d/' + req.body + '.conf', confcontent, function(err) {
     if (err) {
       return res.status(500).send({
         'status': 'failed',
@@ -265,8 +270,8 @@ app.post('/hosts', function(req, res) {
     }
 
     res.send({
-      'status': 'created'
-    });
+      'status': 'created'*/
+    //});
   });
 });
 
