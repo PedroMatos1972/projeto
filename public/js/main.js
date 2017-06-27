@@ -1,28 +1,28 @@
 // C L I E N T E
 $(document).ready(function() {
 var tabIDs;
-  $('#conectNginx').on('click', function(req, res) {
-    $.ajax({
-      type: 'POST',
-      url: "/folder",
-      data: {},
-      success: function(data) {
+$('#conectNginx').on('click', function(req, res) {
+  $.ajax({
+    type: 'POST',
+    url: "/folder",
+    data: {},
+    success: function(data) {
+      console.log(data);
+      console.log(data.message);
+      alert(data.stdout);
+      $('#mensagem').text(data.stdout);
+      $(data).find("a:contains(.config)").each(function() {
+        // will loop through
+        alert("Found a file: " + $(data.stdout).attr("href"));
         console.log(data);
-        console.log(data.message);
-        alert(data.stdout);
-        $('#mensagem').text(data.stdout);
-        $(data).find("a:contains(.config)").each(function() {
-          // will loop through
-          alert("Found a file: " + $(data.stdout).attr("href"));
-          console.log(data);
 
-        });
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
+      });
+    },
+    dataType: 'json',
+    contentType: 'application/json'
   });
-
+});
+  // Valores para informação de Dash
   setInterval(function() {
     $.ajax({
       type: 'POST',
@@ -36,9 +36,6 @@ var tabIDs;
       dataType: 'json',
       contentType: 'application/json'
     });
-  }, 3000);
-
-  setInterval(function() {
     $.ajax({
       type: 'POST',
       url: '/conectmemtotal',
@@ -51,9 +48,6 @@ var tabIDs;
       dataType: 'json',
       contentType: 'application/json'
     });
-  }, 3000);
-
-  setInterval(function() {
     $.ajax({
       type: 'POST',
       url: '/conectmemfree',
@@ -66,9 +60,6 @@ var tabIDs;
       dataType: 'json',
       contentType: 'application/json'
     });
-  }, 3000);
-
-  setInterval(function() {
     $.ajax({
       type: 'POST',
       url: '/conectmemavail',
@@ -81,7 +72,8 @@ var tabIDs;
       dataType: 'json',
       contentType: 'application/json'
     });
-  }, 3000);
+  }, 2000);
+
 
   $('#createHost').on('click', function(req, res) {
     $.ajax({
@@ -91,7 +83,8 @@ var tabIDs;
         'host': $('#host').val(),
         'port': $('#port').val(),
         'destination': $('#destination').val(),
-        'cache': $('#cache').is(':checked')
+        'cache': $('#cache').is(':checked'),
+        'proxy': $('#destination').val()
       }),
       success: function(data) {
         console.log(data);
@@ -129,7 +122,7 @@ var tabIDs;
     });
   });
 
-
+  // Multiplos VHOST'S
 
   var button = '<button class="close" type="button" title="Remove this page">&nbsp× </button>';
   var tabID = 1;
@@ -151,13 +144,13 @@ var tabIDs;
     $('#tab-list').append(
       $('<li><a href="#tab' + tabID + '" role="tab" data-toggle="tab">Configuração ' + tabID + '<button class="close" type="button" title="Remove this page">×</button></a></li>'));
     $('#tab-content').append(
-      $('<div class="tab-pane fade" id="tab' + tabID + '"><h3>Configuração ' + tabID + '</h3><p>' + '</p><div class="form-group"><label for="host">Host:</label><input type="text" class="form-control" id="hosts" value="xpto' + tabID + '.pt"></div><div class="form-group"><label for="port">Port:</label><input type="text" class="form-control" id="ports" value="80"></div><div class="form-group"><label for="destination">Destination:</label><input type="text" class="form-control" id="destinations" value="http://127.0.0.1:3000"></div><div class="checkbox"><label><input type="checkbox" id="caches"> Static assets cache</label></div></div>'));
+      $('<div class="tab-pane fade" id="tab' + tabID + '"><form id="teste"><p>' + '</p><div class="form-group"><label for="host">Host:</label><div class="form-input"><input type="text" class="form-control" id="host' + tabID + '" value="xpto' + tabID + '.pt" name="host"></div></div><div class="form-group"><label for="port">Port:</label><div class="form-input"><input type="text" class="form-control" id="port' + tabID + '" value="80"></div></div><div class="form-group"><label for="destination">Destination:</label><div class="form-input"><input type="text" class="form-control" id="destination' + tabID + '" value="http://127.0.0.1:300' + tabID + '"></div></div><div class="checkbox"><label><div class="form-input"><input type="checkbox" id="cachemv' + tabID + '"> Static assets cache</div></label></div></form></div>'));
   });
   $('#tab-list').on('click', '.close', function() {
 
     var tabID1 = $(this).parents('a').attr('href');
-    console.log(tabID-1);
-    tabIDs  = tabID -1;
+    console.log(tabID - 1);
+    tabIDs = tabID - 1;
     $(this).parents('li').remove();
     $(tabID1).remove();
     //display first tab
@@ -168,32 +161,66 @@ var tabIDs;
 
   var list = document.getElementById("tab-list");
 
-    $('#createHosts').click(function(req, res) {
-        var portss;
-        var destinationss;
-        var hostss;
-        var cachess;
-        for (i=1;i<=JSON.stringify(tabIDs);i++){
+  $("#createHosts").button().on("click", function() {
+    printCalc()
+  })
 
-          portss = '#ports' + i;
-          destinationss = '#destinations' + i;
-          hostss = '#hosts' + i;
-          cachess = '#caches' + i;
-      $.ajax({
-        type: 'POST',
-        url: '/hosts',
-        data: JSON.stringify({
-          'host': $(hostss).val(),
-          'port': $(portss).val(),
-          'destination': $(destinationss).val(),
-          'cache': $(cachess).is(':checked')
-        }),
-        success: function(data) {
-          console.log(data);
-        },
-        dataType: 'json',
-        contentType: 'application/json'
+  function printCalc() {
+    var count = 0;
+    //Nº de valores dentro do array
+
+    $("#tabs").each(function() {
+      //$(this).find(".nav-tabs li").each(function(index, element) {
+      count = 0;
+      conta = 1;
+      var valor1;
+      var valor2;
+      var valor3;
+      var valor5;
+      $("form#teste input").each(function(index, element) {
+        if (conta == 1) {
+          a = $(this).val();
+          console.log('valor:' + a);
+          console.log('Conta:' + conta);
+          valor1 = a;
+        } else if (conta == 2) {
+          a = $(this).val();
+          console.log('valor:' + a);
+          console.log('Conta:' + conta);
+          valor2 = a;
+        } else if (conta == 3) {
+          a = $(this).val();
+          console.log('valor:' + a);
+          console.log('Conta:' + conta);
+          valor3 = a;
+        } else if (conta == 4) {
+          a = $(this).is(':checked');
+          console.log('valor:' + a);
+          console.log('Conta:' + conta);
+          valor4 = a;
+        };
+        conta = conta + 1;
+        if (conta > 4) {
+          conta = 1;
+          $.ajax({
+            type: 'POST',
+            url: '/host',
+            data: JSON.stringify({
+              'host': valor1,
+              'port': valor2,
+              'destination': valor3,
+              'cache': $(this).is(':checked'),
+              'proxy': valor3
+            }),
+            success: function(data) {
+              console.log(data);
+            },
+            dataType: 'json',
+            contentType: 'application/json'
+          });
+        };
+        count = count + 1;
+      });
     });
   };
-    });
-});
+  });
