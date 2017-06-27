@@ -1,27 +1,30 @@
 
 <% include layout-head2 %>
+
+<br />
+<br />
 <form action="/login" method="post">
 <div class="container">
     <div class="row">
-        <div class="col-md-offset-5 col-md-3">
-            <div class="form-login">
-            <h4 style="text-align: center;">Welcome back.</h4>
-			<label>Username:</label>
-			<input type="text" class="form-control input-sm chat-input" name="username"/>
-            </br>
- 			<label>Password:</label>
- 			<input type="password" class="form-control input-sm chat-input" name="password"/>
-            </br>
-            <div class="wrapper" align="center">
-
-            <span class="group-btn">
-            <input type="submit" class="btn btn-primary btn-md" value="Submit"/>
-            </span>
-
-            </div>
-            </div>
-
-        </div>
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    		<form role="form" class="sign_up_form">
+    			<h2 class="sign_up_title">Welcome back</h2>
+          <hr />
+    			<div class="form-group">
+            <label>Username:</label>
+    				<input type="text" name="username" id="username" class="form-control input-lg" placeholder="Enter your username" tabindex="4">
+    			</div>
+    			<div class="form-group">
+            <label>Password:</label>
+    				<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Enter your password" tabindex="5">
+    			</div>
+    			<div class="row">
+    				<div class="col-xs-12 col-md-12"><input href="#" type="submit" class="btn btn-success btn-block btn-lg" value="Sign In"></div>
+    			</div>
+    			<div class="buttons_divider">
+    			</div>
+    		</form>
+    	</div>
     </div>
 </div>
 </form>
