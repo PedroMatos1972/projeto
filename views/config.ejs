@@ -16,251 +16,246 @@
 
   <!-- Page Content -->
   <div class="container">
-    <div class="row">
-      <div class="card">
-        <!--<img data-src="holder.js/100px280/thumb" alt="Card image cap">-->
-        <div class="container">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h4 class="panel-title">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#confcache">Configure Cache</a>
             <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
                 <a data-toggle="collapse" data-parent="#accordion" href="#confcache"><i class="glyphicon glyphicon-chevron-down"></i></a>
             </span>
         </h4>
+      </div>
+      <div id="confcache" class="panel-collapse panel-collapse collapse">
+        <div class="panel-body">
+          <!--<p>Site 1</p>-->
+          <!-- INIT Cache -->
+          <form>
+            <div class="form-group">
+              <label for="host">Host:</label>
+              <input type="text" class="form-control" id="host" value="xpto.pt">
             </div>
-            <div id="confcache" class="panel-collapse panel-collapse collapse">
-              <div class="panel-body">
-                <!--<p>Site 1</p>-->
-                <!-- INIT Cache -->
-                <form>
-                  <div class="form-group">
-                    <label for="host">Host:</label>
-                    <input type="text" class="form-control" id="host" value="xpto.pt">
-                  </div>
-                  <div class="form-group">
-                    <label for="port">Port:</label>
-                    <input type="text" class="form-control" id="port" value="80">
-                  </div>
-                  <div class="form-group">
-                    <label for="destination">Destination:</label>
-                    <input type="text" class="form-control" id="destination" value="http://127.0.0.1:3001">
-                  </div>
-                  <div class="checkbox">
-                    <label>
+            <div class="form-group">
+              <label for="port">Port:</label>
+              <input type="text" class="form-control" id="port" value="80">
+            </div>
+            <div class="form-group">
+              <label for="destination">Destination:</label>
+              <input type="text" class="form-control" id="destination" value="http://127.0.0.1:3001">
+            </div>
+            <div class="checkbox">
+              <label>
                          <input type="checkbox" id="cache"> Static assets cache
                        </label>
-                  </div>
-
-                  <button id="createHost" type="button" class="btn btn-info">Create Host</button>
-                  <button id="testNginx" type="button" class="btn btn-info">Test nginx</button>
-                  <button id="reloadNginx" type="button" class="btn btn-info">Reload nginx</button>
-                </form>
-                <!-- FIM Cache -->
-              </div>
             </div>
-          </div>
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h4 class="panel-title">
+
+            <button id="createHost" type="button" class="btn btn-info">Create Host</button>
+            <button id="testNginx" type="button" class="btn btn-info">Test nginx</button>
+            <button id="reloadNginx" type="button" class="btn btn-info">Reload nginx</button>
+          </form>
+          <!-- FIM Cache -->
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#confloadb">Configure Load Balancing</a>
             <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
                 <a data-toggle="collapse" data-parent="#accordion" href="#confloadb"><i class="glyphicon glyphicon-chevron-down"></i></a>
             </span>
         </h4>
-            </div>
-            <div id="confloadb" class="panel-collapse panel-collapse collapse">
-              <div class="panel-body">
-                <!-- INIT Load Balancing -->
-                <div class="container">
-                  <div class="row">
-                    <div class="control-group" id="fields">
-                      <label class="control-label" for="field1">Creat Multiple Servers</label>
-                      <div class="controls">
-                        <form role="form" autocomplete="off">
-                          <div class="entry input-group col-xs-3">
-                            <input class="form-control" name="fields[]" type="text" placeholder="Server IP" />
-                            <span class="input-group-btn">
+      </div>
+      <div id="confloadb" class="panel-collapse panel-collapse collapse">
+        <div class="panel-body">
+          <!-- INIT Load Balancing -->
+          <div class="container">
+            <div class="row">
+              <div class="control-group" id="fields">
+                <label class="control-label" for="field1">Creat Multiple Servers</label>
+                <div class="controls">
+                  <form role="form" autocomplete="off">
+                    <div class="entry input-group col-xs-3">
+                      <input class="form-control" name="fields[]" type="text" placeholder="Server IP" />
+                      <span class="input-group-btn">
                                 <button class="btn btn-success btn-add" type="button">
                                     <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                            </span>
-                          </div>
-                        </form>
-                        <br>
-                        <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another form field :)</small>
-                      </div>
+                      </button>
+                      </span>
                     </div>
-                  </div>
+                  </form>
+                  <br>
+                  <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another form field :)</small>
                 </div>
-                <script>
-                  $(function() {
-                    $(document).on('click', '.btn-add', function(e) {
-                      e.preventDefault();
-
-                      var controlForm = $('.controls form:first'),
-                        currentEntry = $(this).parents('.entry:first'),
-                        newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
-                      newEntry.find('input').val('');
-                      controlForm.find('.entry:not(:last) .btn-add')
-                        .removeClass('btn-add').addClass('btn-remove')
-                        .removeClass('btn-success').addClass('btn-danger')
-                        .html('<span class="glyphicon glyphicon-minus"></span>');
-                    }).on('click', '.btn-remove', function(e) {
-                      $(this).parents('.entry:first').remove();
-
-                      e.preventDefault();
-                      return false;
-                    });
-                  });
-                </script>
-                <p></p>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-
-                <!-- FIM Load Balancing -->
               </div>
             </div>
           </div>
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h4 class="panel-title">
+          <script>
+            $(function() {
+              $(document).on('click', '.btn-add', function(e) {
+                e.preventDefault();
+
+                var controlForm = $('.controls form:first'),
+                  currentEntry = $(this).parents('.entry:first'),
+                  newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+                newEntry.find('input').val('');
+                controlForm.find('.entry:not(:last) .btn-add')
+                  .removeClass('btn-add').addClass('btn-remove')
+                  .removeClass('btn-success').addClass('btn-danger')
+                  .html('<span class="glyphicon glyphicon-minus"></span>');
+              }).on('click', '.btn-remove', function(e) {
+                $(this).parents('.entry:first').remove();
+
+                e.preventDefault();
+                return false;
+              });
+            });
+          </script>
+          <p></p>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
+          <!-- FIM Load Balancing -->
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#confredirec">Configure Redirect</a>
             <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
                 <a data-toggle="collapse" data-parent="#accordion" href="#confredirec"><i class="glyphicon glyphicon-chevron-down"></i></a>
             </span>
         </h4>
+      </div>
+      <div id="confredirec" class="panel-collapse panel-collapse collapse">
+        <div class="panel-body">
+          <!-- INIT Redirect -->
+          <form>
+            <div class="form-group">
+              <label for="host1">Host 1:</label>
+              <input type="text" class="form-control" id="host1" value="xpto.pt">
             </div>
-            <div id="confredirec" class="panel-collapse panel-collapse collapse">
-              <div class="panel-body">
-                <!-- INIT Redirect -->
-                <form>
-                  <div class="form-group">
-                    <label for="host1">Host 1:</label>
-                    <input type="text" class="form-control" id="host1" value="xpto.pt">
-                  </div>
-                  <div class="form-group">
-                    <label for="host2">Host 2:</label>
-                    <input type="text" class="form-control" id="host2" value="www.xpto.pt">
-                  </div>
-                  <div class="form-group">
-                    <label for="port">Port:</label>
-                    <input type="text" class="form-control" id="port" value="80">
-                  </div>
-                  <div class="form-group">
-                    <label for="destination">Destination:</label>
-                    <input type="text" class="form-control" id="destination" value="http://127.0.0.1:3001">
-                  </div>
-                  <div class="checkbox">
-                    <label>
+            <div class="form-group">
+              <label for="host2">Host 2:</label>
+              <input type="text" class="form-control" id="host2" value="www.xpto.pt">
+            </div>
+            <div class="form-group">
+              <label for="port">Port:</label>
+              <input type="text" class="form-control" id="port" value="80">
+            </div>
+            <div class="form-group">
+              <label for="destination">Destination:</label>
+              <input type="text" class="form-control" id="destination" value="http://127.0.0.1:3001">
+            </div>
+            <div class="checkbox">
+              <label>
                 <input type="checkbox" id="cache"> Static assets cache
               </label>
-                  </div>
-
-                  <button id="createHost" type="button" class="btn btn-info">Create Host</button>
-                  <button id="testNginx" type="button" class="btn btn-info">Test nginx</button>
-                  <button id="reloadNginx" type="button" class="btn btn-info">Reload nginx</button>
-                </form>
-                <!-- FIM Redirect -->
-              </div>
             </div>
-          </div>
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h4 class="panel-title">
+
+            <button id="createHost" type="button" class="btn btn-info">Create Host</button>
+            <button id="testNginx" type="button" class="btn btn-info">Test nginx</button>
+            <button id="reloadNginx" type="button" class="btn btn-info">Reload nginx</button>
+          </form>
+          <!-- FIM Redirect -->
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#confvhosts">Configure Multiple VHost's</a>
             <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
                 <a data-toggle="collapse" data-parent="#accordion" href="#confvhosts"><i class="glyphicon glyphicon-chevron-down"></i></a>
             </span>
         </h4>
-            </div>
-            <div id="confvhosts" class="panel-collapse panel-collapse collapse">
-              <div class="panel-body">
-                <!-- INIT VHosts -->
-                <div class="row">
-                  <div class="col-md-12">
-                    <button id="btn-add-tab" type="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i></button>
+      </div>
+      <div id="confvhosts" class="panel-collapse panel-collapse collapse">
+        <div class="panel-body">
+          <!-- INIT VHosts -->
+          <div class="row">
+            <div class="col-md-12">
+              <button id="btn-add-tab" type="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i></button>
 
-                    <!-- Nav tabs -->
-                    <div id="tabs">
-                      <ul id="tab-list" class="nav nav-tabs" role="tablist" data-tabs="tabs">
+              <!-- Nav tabs -->
+              <div id="tabs">
+                <ul id="tab-list" class="nav nav-tabs" role="tablist" data-tabs="tabs">
 
-                        <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Configuração 1</a></li>
-                      </ul>
-                      <!-- Tab panes Configuração de Sites-->
-                      <div id="tab-content" class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1">
-                          <div id="home" class="tab-pane fade in active">
-                            <form id="teste">
-                              <div class="form-group">
-                                <label for="host">Host:</label>
-                                <div class="form-input">
-                                  <input type="text" class="form-control" id="host1" value="xpto1.pt" name="host">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="port">Port:</label>
-                                <div class="form-input">
-                                  <input type="text" class="form-control" id="port1" value="80">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="destination">Destination:</label>
-                                <div class="form-input">
-                                  <input type="text" class="form-control" id="destination1" value="http://127.0.0.1:3001">
-                                </div>
-                              </div>
-                              <div class="checkbox">
-                                <label>
+                  <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Configuração 1</a></li>
+                </ul>
+                <!-- Tab panes Configuração de Sites-->
+                <div id="tab-content" class="tab-content">
+                  <div class="tab-pane fade in active" id="tab1">
+                    <div id="home" class="tab-pane fade in active">
+                      <form id="teste">
+                        <div class="form-group">
+                          <label for="host">Host:</label>
+                          <div class="form-input">
+                            <input type="text" class="form-control" id="host1" value="xpto1.pt" name="host">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="port">Port:</label>
+                          <div class="form-input">
+                            <input type="text" class="form-control" id="port1" value="80">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="destination">Destination:</label>
+                          <div class="form-input">
+                            <input type="text" class="form-control" id="destination1" value="http://127.0.0.1:3001">
+                          </div>
+                        </div>
+                        <div class="checkbox">
+                          <label>
                                   <div class="form-input">
                                     <input type="checkbox" id="cachemv"> Static assets cache
                                   </div>
                                 </label>
-                              </div>
-                          </div>
-                          </form>
                         </div>
-                      </div>
                     </div>
-                    <button id="createHosts" type="button" class="btn btn-danger">Create Multiple Hosts</button>
-                    <button id="testNginx" type="button" class="btn btn-info">Test nginx</button>
-                    <button id="reloadNginx" type="button" class="btn btn-info">Reload nginx</button>
+                    </form>
                   </div>
                 </div>
-                <!-- FIM VHosts -->
               </div>
+              <button id="createHosts" type="button" class="btn btn-danger">Create Multiple Hosts</button>
+              <button id="testNginx" type="button" class="btn btn-info">Test nginx</button>
+              <button id="reloadNginx" type="button" class="btn btn-info">Reload nginx</button>
             </div>
           </div>
-        </div>
-        <div class="container">
-          <!--<button id="conectNginx" type="button" class="btn btn-success">Create Host</button>-->
-          <!--<div class="mensagem" id="mensagem"></div>-->
-
-          <a id="conectNginx" class="btn btn-success" href="#success" data-toggle="modal"><h4><i class="glyphicon glyphicon-saved"></i> Create Host</h4></a>
-          <!-- Modal -->
-          <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header modal-header-success">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  <h1><i class="glyphicon glyphicon glyphicon-saved"></i> Success Create Mutliple Hosts</h1>
-                </div>
-                <div class="modal-body">
-                  <div class="mensagem" id="mensagem"></div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-              <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-          </div>
-          <!-- /.modal -->
-          <!-- Modal -->
+          <!-- FIM VHosts -->
         </div>
       </div>
     </div>
+  </div>
+  <div class="container">
+    <!--<button id="conectNginx" type="button" class="btn btn-success">Create Host</button>-->
+    <!--<div class="mensagem" id="mensagem"></div>-->
+
+    <center>
+      <a id="conectNginx" class="btn btn-success" href="#success" data-toggle="modal"><h4><i class="glyphicon glyphicon-saved"></i> Create Host</h4></a>
+    </center>
+    <!-- Modal -->
+    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal-header-success" style="background-color:#5CB85C; color:white;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h1><i class="glyphicon glyphicon glyphicon-saved"></i> Success Create Mutiple Hosts</h1>
+          </div>
+          <div class="modal-body">
+            <div class="mensagem" id="mensagem"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- Modal -->
   </div>
   <!-- /.container -->
 
