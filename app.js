@@ -142,6 +142,8 @@ app.use('/users', users);
 //
 //
 //
+
+// List Files Configuration
 app.post('/folder', function(req, res) {
     var output = cp.spawnSync('sh', ['scripts/script_listap.sh'], {
       encoding: 'utf8'
@@ -154,6 +156,7 @@ app.post('/folder', function(req, res) {
     });
     });
 
+  // Reload Nginx
   app.post('/nginx/reload', function(req, res) {
   var output = cp.spawnSync('/usr/sbin/nginx', ['-s', 'reload'], {
     encoding: 'utf8'
@@ -165,6 +168,7 @@ app.post('/folder', function(req, res) {
     });
   });
 
+  // Connect Nginx
   app.post('/conect', function(req, res) {
   var output = cp.spawnSync('sh', ['scripts/script_ligacoes.sh'], {
     encoding: 'utf8'
@@ -177,7 +181,7 @@ app.post('/folder', function(req, res) {
     });
   });
 
-
+  // Total Memory
   app.post('/conectmemtotal', function(req, res) {
   var output = cp.spawnSync('sh', ['scripts/script_memtotal.sh'], {
     encoding: 'utf8'
@@ -191,6 +195,7 @@ app.post('/folder', function(req, res) {
     console.log('out:', output);
   });
 
+  // Memory Free
   app.post('/conectmemfree', function(req, res) {
   var output = cp.spawnSync('sh', ['scripts/script_memfree.sh'], {
     encoding: 'utf8'
@@ -203,6 +208,7 @@ app.post('/folder', function(req, res) {
     });
   });
 
+  // Memory Avail
   app.post('/conectmemavail', function(req, res) {
   var output = cp.spawnSync('sh', ['scripts/script_memavail.sh'], {
     encoding: 'utf8'
@@ -226,8 +232,9 @@ app.post('/nginx/test', function(req, res) {
   });
 });
 
-//----------
-//---------------
+/* Create Host
+ * @params: SERVERNAME, PORT, PROXY, CACHE
+*/
 app.post('/host', function(req, res) {
   console.log(req.body);
 
@@ -251,7 +258,11 @@ app.post('/host', function(req, res) {
     });
   });
 });
-// Creat Multiple hosts
+
+
+/* Create Multiple Hosts
+ *
+*/
 app.post('/hosts', function(req, res) {
   console.log(req.body);
 
@@ -281,13 +292,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-//--------- fim da repetição ----------
-//---------
-
-//--------FIM
-//
-//
-//
 
 
 // error handler
