@@ -1,3 +1,9 @@
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,19 +13,19 @@
 
   <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/frameworks-d48d0c441ed0ab66aa7d582c5aaf762f4a1eef9a915871a36ddb07e71b01ffb2.css" integrity="sha256-1I0MRB7Qq2aqfVgsWq92L0oe75qRWHGjbdsH5xsB/7I=" media="all" rel="stylesheet" />
   <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-a6456108ae38d5ef012503fd17ca8d53dc8721f183c4cbff9418f8513ec0d238.css" integrity="sha256-pkVhCK441e8BJQP9F8qNU9yHIfGDxMv/lBj4UT7A0jg=" media="all" rel="stylesheet" />
-
-
-
-
+  
+  
+  
+  
 
   <meta name="viewport" content="width=device-width">
-
+  
   <title>socket.io/server.js at master · socketio/socket.io</title>
   <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
   <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
   <meta property="fb:app_id" content="1401488693436528">
 
-
+    
     <meta content="https://avatars1.githubusercontent.com/u/10566080?v=3&amp;s=400" property="og:image" /><meta content="GitHub" property="og:site_name" /><meta content="object" property="og:type" /><meta content="socketio/socket.io" property="og:title" /><meta content="https://github.com/socketio/socket.io" property="og:url" /><meta content="socket.io - Realtime application framework (Node.JS server)" property="og:description" />
 
   <link rel="assets" href="https://assets-cdn.github.com/">
@@ -27,7 +33,7 @@
   <meta name="pjax-timeout" content="1000">
   <link rel="sudo-modal" href="/sessions/sudo_modal">
   <meta name="request-id" content="F6BE:2FA2:1AE71D:29097A:5938405F" data-pjax-transient>
-
+  
 
   <meta name="selected-link" value="repo_source" data-pjax-transient>
 
@@ -44,7 +50,7 @@
   <meta class="js-ga-set" name="dimension1" content="Logged In">
 
 
-
+  
 
       <meta name="hostname" content="github.com">
   <meta name="user-login" content="caria">
@@ -56,9 +62,9 @@
   <meta name="html-safe-nonce" content="97604c04bdbe2c2b41db10a43ab732bb41b7ce58">
 
   <meta http-equiv="x-pjax-version" content="f2a391d84c9a9c3816af1e59762eebc9">
+  
 
-
-
+    
   <meta name="description" content="socket.io - Realtime application framework (Node.JS server)">
   <meta name="go-import" content="github.com/socketio/socket.io git https://github.com/socketio/socket.io.git">
 
@@ -84,7 +90,7 @@
   </head>
 
   <body class="logged-in env-production page-blob">
-
+    
 
 
 
@@ -92,13 +98,13 @@
     <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
     <div id="js-pjax-loader-bar" class="pjax-loader-bar"><div class="progress"></div></div>
 
+    
+    
+    
 
 
 
-
-
-
-
+        
 <div class="header" role="banner">
   <div class="container clearfix">
     <a class="header-logo-invertocat" href="https://github.com/" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
@@ -143,10 +149,10 @@
           </li>
       </ul>
 
-
+    
 <ul class="header-nav user-nav float-right" id="user-links">
   <li class="header-nav-item">
-
+    
     <a href="/notifications" aria-label="You have unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s js-socket-channel js-notification-indicator " data-channel="notification-changed:3890988" data-ga-click="Header, go to notifications, icon:unread" data-hotkey="g n">
         <span class="mail-status unread"></span>
         <svg aria-hidden="true" class="octicon octicon-bell float-left" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M14 12v1H0v-1l.73-.58c.77-.77.81-2.55 1.19-4.42C2.69 3.23 6 2 6 2c0-.55.45-1 1-1s1 .45 1 1c0 0 3.39 1.23 4.16 5 .38 1.88.42 3.66 1.19 4.42l.66.58H14zm-7 4c1.11 0 2-.89 2-2H5c0 1.11.89 2 2 2z"/></svg>
@@ -163,7 +169,7 @@
 
     <div class="dropdown-menu-content js-menu-content">
       <ul class="dropdown-menu dropdown-menu-sw">
-
+        
 <a class="dropdown-item" href="/new" data-ga-click="Header, create new repository">
   New repository
 </a>
@@ -247,7 +253,7 @@
 </div>
 
 
-
+      
 
   </div>
 
@@ -261,7 +267,7 @@
   <div role="main">
         <div itemscope itemtype="http://schema.org/SoftwareSourceCode">
     <div id="js-repo-pjax-container" data-pjax-container>
-
+        
 
 
 
@@ -406,7 +412,7 @@
 
       </div>
       <div class="container">
-
+        
 <nav class="reponav js-repo-nav js-sidenav-container-pjax"
      itemscope
      itemtype="http://schema.org/BreadcrumbList"
@@ -469,18 +475,18 @@
 <div class="container new-discussion-timeline experiment-repo-nav">
   <div class="repository-content">
 
-
-
+    
+          
 
 <a href="/socketio/socket.io/blob/2b10f1b3a44a06371eed398bf9011081d2495420/examples/custom-parsers/src/server.js" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
 
 <!-- blob contrib key: blob_contributors:v21:f678879e0b6d1651f930c6901be26ef3 -->
 
 <div class="file-navigation js-zeroclipboard-container">
-
+  
 <div class="select-menu branch-select-menu js-menu-container js-select-menu float-left">
   <button class=" btn btn-sm select-menu-button js-menu-target css-truncate" data-hotkey="w"
-
+    
     type="button" aria-label="Switch branches or tags" tabindex="0" aria-haspopup="true">
       <i>Branch:</i>
       <span class="js-select-button css-truncate-target">master</span>
@@ -1737,7 +1743,7 @@
         <strong>1</strong>
          contributor
       </button>
-
+      
     </div>
 
     <div id="blob_contributors_box" style="display:none">
@@ -1787,7 +1793,7 @@
   </div>
 </div>
 
-
+  
 
   <div itemprop="text" class="blob-wrapper data type-javascript">
       <table class="highlight tab-size js-file-line-container" data-tab-size="8">
@@ -2045,7 +2051,7 @@
 
   </div>
 
-
+      
 <div class="container site-footer-container">
   <div class="site-footer " role="contentinfo">
     <ul class="site-footer-links float-right">
@@ -2083,13 +2089,13 @@
   </div>
 
 
-
+    
     <script crossorigin="anonymous" integrity="sha256-c3IPAnuzF/zrEYwlknXaS+Xvo0TCRqEjQaaMMWjO6qc=" src="https://assets-cdn.github.com/assets/frameworks-73720f027bb317fceb118c259275da4be5efa344c246a12341a68c3168ceeaa7.js"></script>
     <script async="async" crossorigin="anonymous" integrity="sha256-RxzCT0EPRethTgXhTxGeeueFEqdaNXksnP1uIDJytlg=" src="https://assets-cdn.github.com/assets/github-471cc24f410f45eb614e05e14f119e7ae78512a75a35792c9cfd6e203272b658.js"></script>
-
-
-
-
+    
+    
+    
+    
   <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner d-none">
     <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"/></svg>
     <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
@@ -2108,3 +2114,4 @@
 
   </body>
 </html>
+

@@ -1,8 +1,6 @@
 // C L I E N T E
 $(document).ready(function() {
 var tabIDs;
-var arr = {};
-var texto;
 $('#conectNginx').on('click', function(req, res) {
   $.ajax({
     type: 'POST',
@@ -11,20 +9,11 @@ $('#conectNginx').on('click', function(req, res) {
     success: function(data) {
       console.log(data);
       console.log(data.message);
-      arr = data.stdout;
       alert(data.stdout);
-      alert(arr);
-      texto = data.stdout;
-      //arr = ["1-cache.conf", "3-redirect.conf", "default.conf", "xpto1.pt.conf", "xpto.pt.conf"];
-      var out = JSON.parse(texto);
-      out = JSON.stringify(out);
-      alert(out);
-var out = JSON.parse(texto);
-alert(out[1]);
-      $('#ficheiros').text(data.stdout);
+      $('#mensagem').text(data.stdout);
       $(data).find("a:contains(.config)").each(function() {
         // will loop through
-        alert("Found this files: " + $(data.stdout).attr("href"));
+        alert("Found a file: " + $(data.stdout).attr("href"));
         console.log(data);
 
       });
@@ -112,6 +101,7 @@ alert(out[1]);
       data: {},
       success: function(data) {
         console.log(data);
+        //alert('Teste. ' + data.stdout);
       },
       dataType: 'json',
       contentType: 'application/json'
@@ -125,6 +115,7 @@ alert(out[1]);
       data: {},
       success: function(data) {
         console.log(data);
+        //console.log(data.message);
       },
       dataType: 'json',
       contentType: 'application/json'
@@ -132,125 +123,20 @@ alert(out[1]);
   });
 
   //Load Balancer - Adicionar e Remover novos Campos
-  $(document).ready(function() {
-      var max_fields      = 3; //maximum input boxes allowed
-      var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-      var add_button      = $(".add_field_button"); //Add button ID
-      var x = 1; //initlal text box count
-      var y = 1;
-      $(add_button).click(function(e){ //on add input button click
-          e.preventDefault();
-          if(x < max_fields){ //max input box allowed
-            if (x == 1){
-              $('#host3lb').remove();
-            }
-            if (x == 2){
-              $('#host4lb').remove();
-            }
-              x++; //text box increment
-              y = x + 1;
-              //$(wrapper).append('<div><div class="input-group"><input type="text" class="form-control" placeholder="Server IP..." name="mytext[]"/><a href="#" class="remove_field"><span class="input-group-btn"><button id="remove" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> Remove</button></span></a></div></br></br></div>'); //add input box
-              $(wrapper).append('<div><input type="text" class="form-control" value="server www.sapo'+y+'.pt" name="mytext[]" id="host' + y + 'lb"/><a href="#" class="remove_field"><button id="remove" type="button" class="btn btn-danger">X Remove</span></button></a><br></br></div>'); //add input box
-          }
-      });
-
-      $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-          e.preventDefault(); $(this).parent('div').remove(); x--;
-          if (x == 1){
-            $(wrapper).append('<input type="hidden" class="form-control" id="host3lb" value="" mytext[] "">');
-          }
-          if (x == 2){
-            $(wrapper).append('<input type="hidden" class="form-control" id="host4lb" value="" mytext[] "">');
-          }
-      })
-  });
-
-  $('#createLB').on('click', function(req, res) {
-    $.ajax({
-      type: 'POST',
-      url: '/hostlb',
-      data: JSON.stringify({
-        'filenamelb': $('#filenamelb').val(),
-        'host1lb': $('#host1lb').val(),
-        'host2lb': $('#host2lb').val(),
-        'host3lb': $('#host3lb').val(),
-        'host4lb': $('#host4lb').val(),
-        'portlb': $('#portlb').val(),
-        'destinationlb': $('#destinationlb').val(),
-        'cachelb': $('#cachelb').is(':checked'),
-        'proxylb': $('#destinationlb').val()
-      }),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
-  });
-  // Redirects OPT1
-  $('#createRedirOpt1').on('click', function(req, res) {
-    $.ajax({
-      type: 'POST',
-      url: '/hostopt1',
-      data: JSON.stringify({
-        'hostop1': $('#filenameopt1').val(),
-        'host1opt1': $('#host1opt1').val(),
-        'host2opt1': $('#host2opt1').val(),
-        'portopt1': $('#portopt1').val(),
-        'destinationopt1': $('#destinationopt1').val(),
-        'cacheopt1': $('#cacheopt1').is(':checked'),
-        'proxyopt1': $('#destinationopt1').val()
-      }),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
-  });
-
-  // Redirects OPT2
-  $('#createRedirOpt2').on('click', function(req, res) {
-    $.ajax({
-      type: 'POST',
-      url: '/hostopt2',
-      data: JSON.stringify({
-        'hostop2': $('#filenameopt2').val(),
-        'host1opt2': $('#host1opt2').val(),
-        'host2opt2': $('#host2opt2').val(),
-        'portopt2': $('#portopt2').val(),
-        'destinationopt2': $('#destinationopt2').val(),
-        'cacheopt2': $('#cacheopt2').is(':checked'),
-        'proxyopt2': $('#destinationopt2').val()
-      }),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
-  });
-
-  // Redirects OPT3
-  $('#createRedirOpt3').on('click', function(req, res) {
-    $.ajax({
-      type: 'POST',
-      url: '/hostopt3',
-      data: JSON.stringify({
-        'hostop3': $('#filenameopt3').val(),
-        'host1opt3': $('#host1opt3').val(),
-        'host2opt3': $('#host2opt3').val(),
-        'portopt3': $('#portopt3').val(),
-        'destinationopt3': $('#destinationopt3').val(),
-        'cacheopt3': $('#cacheopt3').is(':checked'),
-        'proxyopt3': $('#destinationopt3').val()
-      }),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
+  $('#addFields').on('click', function() {
+      var number = 2; //document.getElementById("member").value;
+      var container = document.getElementById("conteudo");
+      while (container.hasChildNodes()) {
+          container.removeChild(container.lastChild);
+      }
+      for (i=0;i<number;i++){
+        container.appendChild(document.createElement("br"));
+        container.appendChild(document.createTextNode("Server " + (i + 1) + ": ")); //document.createTextNode("Member "
+        var input = document.createElement("input");
+        input.type = "text";
+        container.appendChild(input);
+        container.appendChild(document.createElement("br"));
+      }
   });
 
   // Multiplos VHOST'S
