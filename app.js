@@ -232,7 +232,7 @@ app.post('/nginx/test', function(req, res) {
   });
 });
 
-/* Create Single and Multi Host
+/* Create Single and Multi Host(s)
  * @params: SERVERNAME, PORT, PROXY, CACHE
 */
 app.post('/host', function(req, res) {
@@ -260,7 +260,7 @@ app.post('/host', function(req, res) {
 });
 
 
-/Load Balancing
+//Load Balancing
 app.post('/hostlb', function(req, res) {
   console.log(req.body);
 
@@ -289,7 +289,7 @@ app.post('/hostlb', function(req, res) {
   });
 });
 
-// Redirect OPT1
+// Redirect OPT1 (HTTP to HTTPs)
 app.post('/hostopt1', function(req, res) {
   console.log('File Name: ' + req.body.hostop1);
   console.log(req.body);
@@ -317,7 +317,7 @@ app.post('/hostopt1', function(req, res) {
   });
 });
 
-// Redirect OPT2
+// Redirect OPT2 (non WWW to WWW)
 app.post('/hostopt2', function(req, res) {
   console.log('File Name: ' + req.body.hostop2);
   console.log(req.body);
@@ -345,7 +345,7 @@ app.post('/hostopt2', function(req, res) {
   });
 });
 
-// Redirect OPT3
+// Redirect OPT3 (IP Address to Domain Name)
 app.post('/hostopt3', function(req, res) {
   console.log('File Name: ' + req.body.hostop3);
   console.log(req.body);
@@ -379,7 +379,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
 
 // error handler
 app.use(function(err, req, res, next) {
