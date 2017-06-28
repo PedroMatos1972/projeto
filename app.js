@@ -232,7 +232,7 @@ app.post('/nginx/test', function(req, res) {
   });
 });
 
-/* Create Host
+/* Create Single and Multi Host
  * @params: SERVERNAME, PORT, PROXY, CACHE
 */
 app.post('/host', function(req, res) {
@@ -260,19 +260,22 @@ app.post('/host', function(req, res) {
 });
 
 
-/* Create Multiple Hosts
- *
-*/
-app.post('/hosts', function(req, res) {
+/Load Balancing
+app.post('/hostlb', function(req, res) {
   console.log(req.body);
 
-  var confcontent = utilsmh.prepareConf('simpleproxy', {
-  /*  'SERVERNAME': req.body//.host//,
-    //'PORT': req.body.port,
-    //'PROXY': req.body.destination,
-    //'CACHE': req.body.cache === true ? 'include /etc/nginx/dashboard/cache.conf;' : ''
+  var confcontent = utils.prepareConf('loadbalancing', {
+    'SERVERNAME1': req.body.host1lb,
+    'SERVERNAME2': req.body.host2lb,
+    'SERVERNAME3': req.body.host3lb,
+    'SERVERNAME4': req.body.host4lb,
+    'PORT': req.body.portlb,
+    'PROXY': req.body.destinationlb,
+    'CACHE': req.body.cachelb === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
+    'PROXY2': req.body.proxylb
   });
-  fs.writeFile('/etc/nginx/conf.d/' + req.body + '.conf', confcontent, function(err) {
+
+  fs.writeFile('/etc/nginx/conf.d/' + req.body.filenamelb + '.conf', confcontent, function(err) {
     if (err) {
       return res.status(500).send({
         'status': 'failed',
@@ -281,8 +284,92 @@ app.post('/hosts', function(req, res) {
     }
 
     res.send({
-      'status': 'created'*/
-    //});
+      'status': 'created'
+    });
+  });
+});
+
+// Redirect OPT1
+app.post('/hostopt1', function(req, res) {
+  console.log('File Name: ' + req.body.hostop1);
+  console.log(req.body);
+
+  var confcontent = utils.prepareConf('redirectopt1', {
+    'SERVERNAME': req.body.host1opt1,
+    'SERVERNAMEHTTPS': req.body.host2opt1,
+    'PORT': req.body.portopt1,
+    'PROXY': req.body.destinationopt1,
+    'CACHE': req.body.cacheopt1 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
+    'PROXY2': req.body.proxyopt1
+  });
+
+  fs.writeFile('/etc/nginx/conf.d/' + req.body.hostop1 + '.conf', confcontent, function(err) {
+    if (err) {
+      return res.status(500).send({
+        'status': 'failed',
+        'message': err
+      });
+    }
+
+    res.send({
+      'status': 'created'
+    });
+  });
+});
+
+// Redirect OPT2
+app.post('/hostopt2', function(req, res) {
+  console.log('File Name: ' + req.body.hostop2);
+  console.log(req.body);
+
+  var confcontent = utils.prepareConf('redirectopt2', {
+    'SERVERNAMENONWWW': req.body.host1opt2,
+    'SERVERNAMEWWW': req.body.host2opt2,
+    'PORT': req.body.portopt2,
+    'PROXY': req.body.destinationopt2,
+    'CACHE': req.body.cacheopt2 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
+    'PROXY2': req.body.proxyopt2
+  });
+
+  fs.writeFile('/etc/nginx/conf.d/' + req.body.hostop2 + '.conf', confcontent, function(err) {
+    if (err) {
+      return res.status(500).send({
+        'status': 'failed',
+        'message': err
+      });
+    }
+
+    res.send({
+      'status': 'created'
+    });
+  });
+});
+
+// Redirect OPT3
+app.post('/hostopt3', function(req, res) {
+  console.log('File Name: ' + req.body.hostop3);
+  console.log(req.body);
+
+  var confcontent = utils.prepareConf('redirectopt3', {
+    'SERVERIP': req.body.host1opt3,
+    'SERVERDOMAIN': req.body.host2opt3,
+    'PORT': req.body.portopt3,
+    'PROXY': req.body.destinationopt3,
+    'CACHE': req.body.cacheopt3 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
+    'PROXY2': req.body.proxyopt3
+  });
+
+  fs.writeFile('/etc/nginx/conf.d/' + req.body.hostop3 + '.conf', confcontent, function(err) {
+    if (err) {
+      return res.status(500).send({
+        'status': 'failed',
+        'message': err
+      });
+    }
+
+    res.send({
+      'status': 'created'
+    });
   });
 });
 
