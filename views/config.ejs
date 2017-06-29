@@ -1,4 +1,5 @@
 <% include layout-head %>
+
   <link href="../vendors/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -14,9 +15,59 @@
   <script src="../vendors/js/morris.js"></script>
   <script src="./js/main.js"></script>
 
+  <script>
+    $(function() {
+      $('#knobconections').knob();
+    });
+    $(function() {
+      $('#memtotal').knob();
+    });
+    $(function() {
+      $('#memfree').knob();
+    });
+    $(function() {
+      $('#memavail').knob();
+    });
+  </script>
+  <!-- Page Content -->
+
+  <!-- container "Graphs" -->
+  <div class="container">
+    <h1 class="jumbotron-heading">NGinx Dashboard</h1>
+    <div class="row">
+      <br />
+      <br />
+      <br />
+      <div class="col-sm-3">
+        <center>
+          <p class="card-text"><b>Ligações ao Servidor</b></p>
+          <input id="knobconections" class="knob" value="0" data-fgcolor="#B6FF00" data-height="150" data-readonly="true" data-width="150" data-angleOffset="-90" data-angleArc="180" data-max="300" data-offsetwidth="150">
+        </center>
+      </div>
+      <div class="col-sm-3">
+        <center>
+          <p class="card-text"><b>Memória Total do Servidor (KB)</b></p>
+          <input id="memtotal" class="knob" value="0" data-fgcolor="#0094FF" data-height="150" data-readonly="true" data-width="150" data-angleOffset="-90" data-angleArc="180" data-max="2000000" data-offsetwidth="150">
+        </center>
+      </div>
+      <div class="col-sm-3">
+        <center>
+          <p class="card-text"><b>Memória Livre do Servidor (KB)</b></p>
+          <input id="memfree" class="knob" value="0" data-fgcolor="#009933" data-height="150" data-readonly="true" data-width="150" data-angleOffset="-90" data-angleArc="180" data-max="2000000" data-offsetwidth="150">
+        </center>
+      </div>
+      <div class="col-sm-3">
+        <center>
+          <p class="card-text"><b>Memória Ocupada do Servidor (KB)</b></p>
+          <input id="memavail" class="knob" value="0" data-fgcolor="#FF0000" data-height="150" data-readonly="true" data-width="150" data-angleOffset="-90" data-angleArc="180" data-max="2000000" data-offsetwidth="150">
+        </center>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+
   <!-- Page Content -->
   <div class="container">
-    <br/>
     <!-- Versão Nova Panels -->
     <div class="panel-group" id="accordion">
       <div class="panel panel-success">
@@ -29,9 +80,7 @@
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="panel-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-            on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-            raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            Formulário da Configuração do "Configure Cache"
           </div>
         </div>
       </div>
@@ -39,28 +88,13 @@
         <div class="panel-heading">
           <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-          <table style="width:100%">
-              <tr>
-                <td>1</td>
-                <td>umerrinayat</td>
-                <td>W_Loss</td>
-                <td>H#22 Devis road Lahore</td>
-                <td>menu-123</td>
-                <td>menu-111</td>
-                <td>menu-321</td>
-                <td>menu_777</td>
-                <td>QR code</td>
-                <td>Done</td>
-              </tr>
-            </table>
+          Configure Load Balancing
         </a>
       </h4>
         </div>
         <div id="collapse2" class="panel-collapse collapse">
           <div class="panel-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-            on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-            raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            Formulário da Configuração do "Configure Load Balancing"
           </div>
         </div>
       </div>
@@ -68,28 +102,13 @@
         <div class="panel-heading">
           <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-          <table style="width:100%">
-              <tr>
-                <td>1</td>
-                <td>umerrinayat</td>
-                <td>W_Loss</td>
-                <td>H#22 Devis road Lahore</td>
-                <td>menu-123</td>
-                <td>menu-111</td>
-                <td>menu-321</td>
-                <td>menu_777</td>
-                <td>QR code</td>
-                <td>Done</td>
-              </tr>
-            </table>
+          Configure Redirect
         </a>
       </h4>
         </div>
         <div id="collapse3" class="panel-collapse collapse">
           <div class="panel-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-            on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-            raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            Formulário da Configuração do "Configure Redirect"
           </div>
         </div>
       </div>
@@ -97,28 +116,13 @@
         <div class="panel-heading">
           <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-          <table style="width:100%">
-              <tr>
-                <td>1</td>
-                <td>umerrinayat</td>
-                <td>W_Loss</td>
-                <td>H#22 Devis road Lahore</td>
-                <td>menu-123</td>
-                <td>menu-111</td>
-                <td>menu-321</td>
-                <td>menu_777</td>
-                <td>QR code</td>
-                <td>Done</td>
-              </tr>
-            </table>
+          Configure Multiple VHost's
         </a>
       </h4>
         </div>
         <div id="collapse4" class="panel-collapse collapse">
           <div class="panel-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-            on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-            raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            Formulário da Configuração do "Configure Multiple VHost's"
           </div>
         </div>
       </div>
