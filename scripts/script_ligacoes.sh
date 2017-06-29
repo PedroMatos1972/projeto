@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo ss -s | grep Total: | awk '{print $2}'
+ss -s | grep Total: | awk '{print $2}'
