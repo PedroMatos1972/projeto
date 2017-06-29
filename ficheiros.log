@@ -1,9 +1,5 @@
 100-default.conf
 1-cache.conf
-1-loadbalancing.conf
-2-loadbalancing.conf
-default.conf
-paulo.pt.conf
 pedro.pt.conf
 vasco.pt.conf
 xpto10.pt.conf
@@ -19,4 +15,3 @@ xpto7.pt.conf
 xpto8.pt.conf
 xpto9.pt.conf
 xpto.pt.conf
-xptovasco.pt.conf
