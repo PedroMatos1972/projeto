@@ -1,9 +1,5 @@
 100-default.conf
 1-cache.conf
-pedro.pt.conf
-vasco.pt.conf
-xpto10.pt.conf
-xpto11.pt.conf
 xpto12.pt.conf
 xpto1.pt.conf
 xpto2.pt.conf
@@ -14,4 +10,3 @@ xpto6.pt.conf
 xpto7.pt.conf
 xpto8.pt.conf
 xpto9.pt.conf
-xpto.pt.conf

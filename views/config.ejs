@@ -73,12 +73,11 @@
       <div class="panel panel-success">
         <div class="panel-heading">
           <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          Configure Multiple VHost's
-        </a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#confvhosts">Configure Multiple VHost's</a>
+        <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel"><a data-toggle="collapse" data-parent="#accordion" href="#confvhosts"><i class="glyphicon glyphicon-chevron-down"></i></a></span>
       </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
+        <div id="confvhosts" class="panel-collapse collapse in">
           <div class="panel-body">
             <!-- INIT VHosts -->
             <div class="row">
@@ -135,12 +134,13 @@
       <div class="panel panel-success">
         <div class="panel-heading">
           <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-          Configure Load Balancing
-        </a>
-      </h4>
+            <a data-toggle="collapse" data-parent="#accordion" href="#confloadb">Configure Load Balancing</a>
+            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
+                <a data-toggle="collapse" data-parent="#accordion" href="#confloadb"><i class="glyphicon glyphicon-chevron-down"></i></a>
+            </span>
+          </h4>
         </div>
-        <div id="collapse2" class="panel-collapse collapse">
+        <div id="confloadb" class="panel-collapse collapse">
           <div class="panel-body">
             <!-- INIT Load Balancing -->
             <form id="loadbal">
@@ -190,10 +190,11 @@
       <div class="panel panel-success">
         <div class="panel-heading">
           <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-          Configure Redirect
-        </a>
-      </h4>
+            <a data-toggle="collapse" data-parent="#accordion" href="#confredirec">Configure Redirect</a>
+            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
+              <a data-toggle="collapse" data-parent="#accordion" href="#confredirec"><i class="glyphicon glyphicon-chevron-down"></i></a>
+            </span>
+          </h4>
         </div>
         <div id="collapse3" class="panel-collapse collapse">
           <div class="panel-body">
@@ -326,8 +327,12 @@
           </div>
         </div>
       </div>
+      <br />
+
       <button id="testNginx" type="button" class="btn btn-warning">Test nginx</button>
       <button id="reloadNginx" type="button" class="btn btn-danger">Reload nginx</button>
+      <br />
+
       <div class="panel panel-success">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -478,7 +483,6 @@
               <li><a href="#3a" data-toggle="tab">IP address to domain name</a>
               </li>
             </ul>
-
             <div class="tab-content clearfix">
               <div class="tab-pane active" id="1a">
                 <!-- INIT Form -->
@@ -584,7 +588,6 @@
                       <input type="checkbox" id="cacheopt3"> Static assets cache
                     </label>
                       </div>
-
                       <button id="createRedirOpt3" type="button" class="btn btn-warning">Create Host</button>
                   </form>
                   </div>
