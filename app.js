@@ -232,17 +232,26 @@ app.post('/nginx/test', function(req, res) {
   });
 });
 
+
+// Remover Ficheiros
+app.post('/remover', function(req, res) {
+  var exec = require('child_process').exec;
+  var ligacaossh = exec('rm -rf /etc/nginx/conf.d/' + req.body.labelt , function(err, ligacaossh, stderr){
+    console.log("Ficheiro a Apagar:" + ligacaossh);
+  });
+  //console.log(req.body.labelt);
+});
+
 /* Create Single and Multi Host(s)
  * @params: SERVERNAME, PORT, PROXY, CACHE
 */
 app.post('/host', function(req, res) {
-  console.log(req.body);
-
   var confcontent = utils.prepareConf('simpleproxy', {
     'SERVERNAME': req.body.host,
     'PORT': req.body.port,
     'PROXY': req.body.destination,
-    'CACHE': req.body.cache === true ? 'include /etc/nginx/dashboard/cache.conf;' : ''
+    'CACHE': req.body.cache === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
+    'PROXY2': req.body.proxy
   });
 
   fs.writeFile('/etc/nginx/conf.d/' + req.body.host + '.conf', confcontent, function(err) {
@@ -262,7 +271,7 @@ app.post('/host', function(req, res) {
 
 //Load Balancing
 app.post('/hostlb', function(req, res) {
-  console.log(req.body);
+  //console.log(req.body);
 
   var confcontent = utils.prepareConf('loadbalancing', {
     'SERVERNAME1': req.body.host1lb,
@@ -291,8 +300,8 @@ app.post('/hostlb', function(req, res) {
 
 // Redirect OPT1 (HTTP to HTTPs)
 app.post('/hostopt1', function(req, res) {
-  console.log('File Name: ' + req.body.hostop1);
-  console.log(req.body);
+  //console.log('File Name: ' + req.body.hostop1);
+  //console.log(req.body);
 
   var confcontent = utils.prepareConf('redirectopt1', {
     'SERVERNAME': req.body.host1opt1,
@@ -319,8 +328,8 @@ app.post('/hostopt1', function(req, res) {
 
 // Redirect OPT2 (non WWW to WWW)
 app.post('/hostopt2', function(req, res) {
-  console.log('File Name: ' + req.body.hostop2);
-  console.log(req.body);
+  //console.log('File Name: ' + req.body.hostop2);
+  //console.log(req.body);
 
   var confcontent = utils.prepareConf('redirectopt2', {
     'SERVERNAMENONWWW': req.body.host1opt2,
@@ -347,8 +356,8 @@ app.post('/hostopt2', function(req, res) {
 
 // Redirect OPT3 (IP Address to Domain Name)
 app.post('/hostopt3', function(req, res) {
-  console.log('File Name: ' + req.body.hostop3);
-  console.log(req.body);
+  //console.log('File Name: ' + req.body.hostop3);
+  //console.log(req.body);
 
   var confcontent = utils.prepareConf('redirectopt3', {
     'SERVERIP': req.body.host1opt3,

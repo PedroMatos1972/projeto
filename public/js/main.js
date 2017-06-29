@@ -1,38 +1,81 @@
 // C L I E N T E
 $(document).ready(function() {
-var tabIDs;
-var arr = {};
-var texto;
-$('#conectNginx').on('click', function(req, res) {
-  $.ajax({
-    type: 'POST',
-    url: "/folder",
-    data: {},
-    success: function(data) {
-      console.log(data);
-      console.log(data.message);
-      arr = data.stdout;
-      alert(data.stdout);
-      alert(arr);
-      texto = data.stdout;
-      //arr = ["1-cache.conf", "3-redirect.conf", "default.conf", "xpto1.pt.conf", "xpto.pt.conf"];
-      var out = JSON.parse(texto);
-      out = JSON.stringify(out);
-      alert(out);
-var out = JSON.parse(texto);
-alert(out[1]);
-      $('#ficheiros').text(data.stdout);
-      $(data).find("a:contains(.config)").each(function() {
-        // will loop through
-        alert("Found this files: " + $(data.stdout).attr("href"));
-        console.log(data);
+  var tabIDs;
+  var arr = {};
+  var texto;
+  var valor = 0;
 
-      });
-    },
-    dataType: 'json',
-    contentType: 'application/json'
+  //$('#conectNginx').on('click', function(req, res) {
+  setInterval(function() {
+    $.ajax({
+      type: 'POST',
+      url: "/folder",
+      data: {},
+      success: function(data) {
+        //console.log(data);
+        //console.log(data.message);
+        arr = data.stdout;
+        //alert(data.stdout);
+        //alert(arr);
+        texto = data.stdout;
+        //arr = ["1-cache.conf", "3-redirect.conf", "default.conf", "xpto1.pt.conf", "xpto.pt.conf"];
+        var out = JSON.parse(texto);
+        out = JSON.stringify(out);
+        //alert(out);
+        var out = JSON.parse(texto);
+        //alert(out[1]);
+        var out1 = out.length;
+        //if (atrib >= 1){
+        //  $('#fich').parent('div').remove();
+        //  $('#ficheiros').append('<div id="fich"></div>');
+        //};
+        valor = out.length
+        for (var i = 0; i < out.length; i++) {
+          if (i >= 2) {
+            console.log(out[i]);
+            //$('#ficheiros').text(out[i]);
+            $('#ficheiros').append('<div><div id="rmv" class="input-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/><span class="input-group-btn"><button class="btn btn-danger remove-me" type="button" id="remove' + i + '">Remove</button></span></div></br></div>'); //add input box
+          } else if (i == 1) {
+
+            $('#ficheiros').append('<div class="form-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/></div></div>'); //add input box
+          } else if (i == 0) {
+            $('#ficheiros').html('<div><div class="form-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/></div></div>'); //add input box
+
+          };
+          //alert(labelt);
+        };
+
+        atrib = 1;
+        //alert(out1);
+        //$('#ficheiros').text(data.stdout);
+        $(data).find("a:contains(.config)").each(function() {
+          // will loop through
+          alert("Found this files: " + $(data.stdout).attr("href"));
+          console.log(data);
+
+        });
+      },
+      dataType: 'json',
+      contentType: 'application/json'
+    });
+  //});
+  }, 5000);
+
+  $(document).on("click", ".remove-me", function() {
+    console.log($(this).parent().parent().find('input').val());
+    $.ajax({
+      type: 'POST',
+      url: '/remover',
+      data: JSON.stringify({
+        'labelt': $(this).parent().parent().find('input').val()
+      }),
+      success: function(data) {
+        console.log(data);
+      },
+      dataType: 'json',
+      contentType: 'application/json'
   });
-});
+  });
   // Valores para informação de Dash
   setInterval(function() {
     $.ajax({
@@ -133,36 +176,38 @@ alert(out[1]);
 
   //Load Balancer - Adicionar e Remover novos Campos
   $(document).ready(function() {
-      var max_fields      = 3; //maximum input boxes allowed
-      var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-      var add_button      = $(".add_field_button"); //Add button ID
-      var x = 1; //initlal text box count
-      var y = 1;
-      $(add_button).click(function(e){ //on add input button click
-          e.preventDefault();
-          if(x < max_fields){ //max input box allowed
-            if (x == 1){
-              $('#host3lb').remove();
-            }
-            if (x == 2){
-              $('#host4lb').remove();
-            }
-              x++; //text box increment
-              y = x + 1;
-              //$(wrapper).append('<div><div class="input-group"><input type="text" class="form-control" placeholder="Server IP..." name="mytext[]"/><a href="#" class="remove_field"><span class="input-group-btn"><button id="remove" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> Remove</button></span></a></div></br></br></div>'); //add input box
-              $(wrapper).append('<div><input type="text" class="form-control" value="server www.sapo'+y+'.pt" name="mytext[]" id="host' + y + 'lb"/><a href="#" class="remove_field"><button id="remove" type="button" class="btn btn-danger">X Remove</span></button></a><br></br></div>'); //add input box
-          }
-      });
+    var max_fields = 3; //maximum input boxes allowed
+    var wrapper = $(".input_fields_wrap"); //Fields wrapper
+    var add_button = $(".add_field_button"); //Add button ID
+    var x = 1; //initlal text box count
+    var y = 1;
+    $(add_button).click(function(e) { //on add input button click
+      e.preventDefault();
+      if (x < max_fields) { //max input box allowed
+        if (x == 1) {
+          $('#host3lb').remove();
+        }
+        if (x == 2) {
+          $('#host4lb').remove();
+        }
+        x++; //text box increment
+        y = x + 1;
+        //$(wrapper).append('<div><div class="input-group"><input type="text" class="form-control" placeholder="Server IP..." name="mytext[]"/><a href="#" class="remove_field"><span class="input-group-btn"><button id="remove" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> Remove</button></span></a></div></br></br></div>'); //add input box
+        $(wrapper).append('<div><input type="text" class="form-control" value="server www.sapo' + y + '.pt" name="mytext[]" id="host' + y + 'lb"/><a href="#" class="remove_field"><button id="remove" type="button" class="btn btn-danger">X Remove</span></button></a><br></br></div>'); //add input box
+      }
+    });
 
-      $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-          e.preventDefault(); $(this).parent('div').remove(); x--;
-          if (x == 1){
-            $(wrapper).append('<input type="hidden" class="form-control" id="host3lb" value="" mytext[] "">');
-          }
-          if (x == 2){
-            $(wrapper).append('<input type="hidden" class="form-control" id="host4lb" value="" mytext[] "">');
-          }
-      })
+    $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
+      e.preventDefault();
+      $(this).parent('div').remove();
+      x--;
+      if (x == 1) {
+        $(wrapper).append('<input type="hidden" class="form-control" id="host3lb" value="" mytext[] "">');
+      }
+      if (x == 2) {
+        $(wrapper).append('<input type="hidden" class="form-control" id="host4lb" value="" mytext[] "">');
+      }
+    })
   });
 
   $('#createLB').on('click', function(req, res) {
@@ -177,8 +222,7 @@ alert(out[1]);
         'host4lb': $('#host4lb').val(),
         'portlb': $('#portlb').val(),
         'destinationlb': $('#destinationlb').val(),
-        'cachelb': $('#cachelb').is(':checked'),
-        'proxylb': $('#destinationlb').val()
+        'cachelb': $('#cachelb').is(':checked')
       }),
       success: function(data) {
         console.log(data);
@@ -353,4 +397,4 @@ alert(out[1]);
       });
     });
   };
-  });
+});
