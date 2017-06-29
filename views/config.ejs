@@ -327,65 +327,40 @@
           </div>
         </div>
       </div>
-      <!--<div class="cols-sm-3">
-        <button id="testNginx" type="button" class="btn btn-warning">Test nginx</button>
-        <button id="reloadNginx" type="button" class="btn btn-danger">Reload nginx</button>
-      </div>
-      <br />-->
+    </div>
+  </div>
+  <div class="container">
+    <button id="testNginx" type="button" class="btn btn-warning">Test nginx</button>
+    <button id="reloadNginx" type="button" class="btn btn-danger">Reload nginx</button>
+    <a id="conectNginx" type="button" class="btn btn-success" href="#success" data-toggle="modal">List Config Files</a>
 
 
-      <!--<div class="panel panel-success">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#conffiles">List Files</a>
-              <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#conffiles"><i class="glyphicon glyphicon-chevron-down"></i></a>
-              </span>
-          </h4>
-        </div>
-        <div id="conffiles" class="panel-collapse panel-collapse collapse">
-          <div class="panel-body">
+    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal-header-success" style="background-color:#5CB85C; color:white;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h1><i class="glyphicon glyphicon glyphicon-saved"></i>List Config Files</h1>
           </div>
-        </div>-->
+          <div class="modal-body">
+            <div class="mensagem" id="mensagem"></div>
+            <div id="ficheiros"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
       </div>
-      <!--<div id="file"></div>
-      <div class="mensagem" id="mensagem"></div>-->
+      <!-- /.modal-dialog -->
     </div>
 
-    <!-- /.Versão Nova Panels -->
-
-    <div class="container">
-      <button id="testNginx" type="button" class="btn btn-warning">Test nginx</button>
-      <button id="reloadNginx" type="button" class="btn btn-danger">Reload nginx</button>
-      <a id="conectNginx" type="button" class="btn btn-success" href="#success" data-toggle="modal">List Config Files</a>
-
-
-      <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header modal-header-success" style="background-color:#5CB85C; color:white;">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h1><i class="glyphicon glyphicon glyphicon-saved"></i>List Config Files</h1>
-            </div>
-            <div class="modal-body">
-              <div class="mensagem" id="mensagem"></div>
-              <div id="ficheiros"></div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-
-    </div>
-    <br />
-    <br />
-    <br />
+  </div>
+  <br />
+  <br />
+  <br />
 
 
 
 
-    <% include layout-foot.ejs %>
+  <% include layout-foot.ejs %>
