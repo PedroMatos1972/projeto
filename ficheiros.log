@@ -1,6 +1,7 @@
 100-default.conf
 1-cache.conf
 1-loadbalancing.conf
+2-loadbalancing.conf
 default.conf
 paulo.pt.conf
 pedro.pt.conf
