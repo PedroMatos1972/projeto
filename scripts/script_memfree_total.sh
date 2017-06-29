@@ -1,12 +1,12 @@
 #!/bin/bash
 #printf  '[\x22' >  string.log
-cat /proc/meminfo | grep MemTotal | awk '{print $2}' > string.log
+sudo cat /proc/meminfo | grep MemTotal | awk '{print $2}' > string.log
 printf  ',' >> string.log
-cat /proc/meminfo | grep MemFree | awk '{print $2}' >> string.log
+sudo cat /proc/meminfo | grep MemFree | awk '{print $2}' >> string.log
 printf  ',' >> string.log
-cat /proc/meminfo | grep MemAvailable | awk '{print $2}'>> string.log
+sudo cat /proc/meminfo | grep MemAvailable | awk '{print $2}'>> string.log
 printf  ',' >> string.log
-cat /proc/meminfo | grep Cached: | awk '{print $2}' | sed -n '1p'>> string.log
+sudo cat /proc/meminfo | grep Cached: | awk '{print $2}' | sed -n '1p'>> string.log
 #printf  '\x22]' >>  string.log
 #cat string.log
 
@@ -16,6 +16,6 @@ cat /proc/meminfo | grep Cached: | awk '{print $2}' | sed -n '1p'>> string.log
 
 
 
-for fn in `cat string.log`; do
+for fn in `sudo cat string.log`; do
     printf $fn
 done

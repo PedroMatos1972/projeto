@@ -1,2 +1,2 @@
 #!/bin/bash
-cat /proc/meminfo | grep MemFree | awk '{print $2}'
+sudo cat /proc/meminfo | grep MemFree | awk '{print $2}'
