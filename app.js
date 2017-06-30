@@ -249,6 +249,7 @@ passport.use(new Strategy(
     var confcontent = utils.prepareConf('simpleproxy', {
       'SERVERNAME': req.body.host,
       'PORT': req.body.port,
+      'MIME': req.body.mimeh,
       'PROXY': req.body.destination,
       'CACHE': req.body.cache === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
       'PROXY2': req.body.proxy

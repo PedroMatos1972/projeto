@@ -12,6 +12,10 @@
   <script src="../vendors/js/chart.js"></script>
   <script src="../vendors/js/morris.js"></script>
   <script src="./js/main.js"></script>
+
+  <!-- Bootstrap Tags -->
+  <link href="../vendors/css/bootstrap-tagsinput.css" rel="stylesheet" />
+  <script src="../vendors/js/bootstrap-tagsinput.js"></script>
   <script>
     $(function() {
       $('#knobconections').knob();
@@ -112,6 +116,12 @@
 															<input type="text" class="form-control" id="port1" value="80">
 														</div>
 													</div>
+                          <div class="form-group">
+                            <label for="mime">Mime Types:</label>
+                            <div class="form-input">
+                              <input type="text" class="form-control" id="mimeh1" value="">
+                            </div>
+                          </div>
 													<div class="form-group">
 														<label for="destination">Destination:</label>
 														<div class="form-input">
@@ -339,6 +349,81 @@
 			<!-- /.modal-dialog -->
 		</div>
 	</div>
+
+  <!-- MIMES -->
+  <div class="container">
+    <div class="col-sm-8">
+      <button value="html" type="button" class="btn btn-default btn-xs mime-type" style="width:40px;">html</button>
+      <button value="htm" type="button" class="btn btn-default btn-xs mime-type" style="width:40px;">htm</button>
+      <button value="shtml" type="button" class="btn btn-default btn-xs mime-type" style="width:40px;">shtml</button>
+      <button value="css" type="button" class="btn btn-default btn-xs mime-type" style="width:40px;">css</button>
+      <button value="xml" type="button" class="btn btn-default btn-xs mime-type" style="width:40px;">xml</button>
+      <button value="js" type="button" class="btn btn-default btn-xs mime-type" style="width:40px;">js</button>
+      <button value="rss" type="button" class="btn btn-default btn-xs mime-type" style="width:40px;">rss</button>
+      <button value="jar" type="button" class="btn btn-default btn-xs mime-type" style="width:40px;">jar</button>
+      <button value="war" type="button" class="btn btn-default btn-xs mime-type" style="width:40px;">war</button>
+      <button value="ear" type="button" class="btn btn-default btn-xs mime-type" style="width:40px;">ear</button>
+      <p></p>
+      <button value="gif" type="button" class="btn btn-primary btn-xs mime-type" style="width:40px;">gif</button>
+      <button value="jpeg" type="button" class="btn btn-primary btn-xs mime-type" style="width:40px;">jpeg</button>
+      <button value="jpg" type="button" class="btn btn-primary btn-xs mime-type" style="width:40px;">jpg</button>
+      <button value="png" type="button" class="btn btn-primary btn-xs mime-type" style="width:40px;">png</button>
+      <button value="ico" type="button" class="btn btn-primary btn-xs mime-type" style="width:40px;">ico</button>
+      <button value="jng" type="button" class="btn btn-primary btn-xs mime-type" style="width:40px;">jng</button>
+      <button value="wbmp" type="button" class="btn btn-primary btn-xs mime-type" style="width:40px;">wbmp</button>
+      <button value="bmp" type="button" class="btn btn-primary btn-xs mime-type" style="width:40px;">bmp</button>
+      <button value="dwg" type="button" class="btn btn-primary btn-xs mime-type" style="width:40px;">dwg</button>
+      <button value="dxf" type="button" class="btn btn-primary btn-xs mime-type" style="width:40px;">dxf</button>
+      <p></p>
+      <button value="txt" type="button" class="btn btn-success btn-xs mime-type" style="width:40px;">txt</button>
+      <button value="pdf" type="button" class="btn btn-success btn-xs mime-type" style="width:40px;">pdf</button>
+      <button value="doc" type="button" class="btn btn-success btn-xs mime-type" style="width:40px;">doc</button>
+      <button value="docx" type="button" class="btn btn-success btn-xs mime-type" style="width:40px;">docx</button>
+      <button value="xls" type="button" class="btn btn-success btn-xs mime-type" style="width:40px;">xls</button>
+      <button value="xlsx" type="button" class="btn btn-success btn-xs mime-type" style="width:40px;">xlsx</button>
+      <button value="odt" type="button" class="btn btn-success btn-xs mime-type" style="width:40px;">odt</button>
+      <button value="rtf" type="button" class="btn btn-success btn-xs mime-type" style="width:40px;">rtf</button>
+      <button value="ppt" type="button" class="btn btn-success btn-xs mime-type" style="width:40px;">ppt</button>
+      <button value="pptx" type="button" class="btn btn-success btn-xs mime-type" style="width:40px;">pptx</button>
+      <p></p>
+      <button value="rar" type="button" class="btn btn-warning btn-xs mime-type" style="width:40px;">rar</button>
+      <button value="rpm" type="button" class="btn btn-warning btn-xs mime-type" style="width:40px;">rpm</button>
+      <button value="zip" type="button" class="btn btn-warning btn-xs mime-type" style="width:40px;">zip</button>
+      <button value="deb" type="button" class="btn btn-warning btn-xs mime-type" style="width:40px;">deb</button>
+      <button value="bin" type="button" class="btn btn-warning btn-xs mime-type" style="width:40px;">bin</button>
+      <button value="exe" type="button" class="btn btn-warning btn-xs mime-type" style="width:40px;">exe</button>
+      <button value="dll" type="button" class="btn btn-warning btn-xs mime-type" style="width:40px;">dll</button>
+      <button value="iso" type="button" class="btn btn-warning btn-xs mime-type" style="width:40px;">iso</button>
+      <button value="img" type="button" class="btn btn-warning btn-xs mime-type" style="width:40px;">img</button>
+      <button value="msi" type="button" class="btn btn-warning btn-xs mime-type" style="width:40px;">msi</button>
+      <p></p>
+      <button value="mp3" type="button" class="btn btn-danger btn-xs mime-type" style="width:40px;">mp3</button>
+      <button value="mp4" type="button" class="btn btn-danger btn-xs mime-type" style="width:40px;">mp4</button>
+      <button value="aac" type="button" class="btn btn-danger btn-xs mime-type" style="width:40px;">aac</button>
+      <button value="mpeg" type="button" class="btn btn-danger btn-xs mime-type" style="width:40px;">mpeg</button>
+      <button value="mpg" type="button" class="btn btn-danger btn-xs mime-type" style="width:40px;">mpg</button>
+      <button value="mov" type="button" class="btn btn-danger btn-xs mime-type" style="width:40px;">mov</button>
+      <button value="flv" type="button" class="btn btn-danger btn-xs mime-type" style="width:40px;">flv</button>
+      <button value="avi" type="button" class="btn btn-danger btn-xs mime-type" style="width:40px;">avi</button>
+      <button value="wmv" type="button" class="btn btn-danger btn-xs mime-type" style="width:40px;">wmv</button>
+      <button value="asf" type="button" class="btn btn-danger btn-xs mime-type" style="width:40px;">asf</button>
+    </div>
+    <div class="col-sm-4">
+      <div id="botoes">
+        <div class="example example_markup">
+          <div class="bs-example">
+            <input id="mime" type="text" value="" data-role="tagsinput" />
+                  <!--<pre class="val"><code data-language="javascript"></code></pre>
+                  <pre class="items"><code data-language="javascript"></code></pre>-->
+                  <input id="mime1" type="text" value="" class="form-control" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.MIMES -->
+
+
 	<br />
 	<br />
 	<br />

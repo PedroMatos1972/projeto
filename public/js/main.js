@@ -40,11 +40,9 @@ $(document).ready(function() {
             $('#ficheiros').append('<div class="form-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/></div></div>'); //add input box
           } else if (i == 0) {
             $('#ficheiros').html('<div><div class="form-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/></div></div>'); //add input box
-
           };
           //alert(labelt);
         };
-
         atrib = 1;
         //alert(out1);
         //$('#ficheiros').text(data.stdout);
@@ -58,7 +56,7 @@ $(document).ready(function() {
       dataType: 'json',
       contentType: 'application/json'
     });
-  //});
+    //});
   }, 5000);
 
   $(document).on("click", ".remove-me", function() {
@@ -74,9 +72,43 @@ $(document).ready(function() {
       },
       dataType: 'json',
       contentType: 'application/json'
+    });
   });
+
+  // MIME Types
+  $(document).on("click", ".mime-type", function() {
+    console.log('TESTE1:' + $(this).val());
+    //$('#botoes').append('<input type="text" value="' + $(this).val() + '" data-role="tagsinput" />' ); //add input box
+    //$('#mime').val()=$(this).val();
+    $('#mime').tagsinput('add', $(this).val());
   });
-  // Valores para informação de Dash
+  var mytime = setInterval(function() {
+    $('#mime').tagsinput('add', 'js,css,png,jpg,jpeg,gif,ico');
+    clearInterval(mytime);
+  }, 100);
+
+  //var obj;
+  $('#mime').on('change', function(event) {
+    var $element = $(event.target),
+    $container = $element.closest('.example');
+      if (!$element.data('tagsinput'))
+        return;
+        var val = $element.val();
+        if (val === null)
+          val = "null";
+          //$('code', $('pre.val', $container)).html(($.isArray(val) ? JSON.stringify(val) : "\"" + val.replace('"', '\\"') + "\""));
+          //$('code', $('pre.items', $container)).html(JSON.stringify($element.tagsinput('items')));
+          $('#mime1').val($(this).val().replace(/,/g,"|"));
+            $('#mimeh1').val($(this).val().replace(/,/g,"|"));
+    //obj = $(this).val();
+    //obj =   $(this).val();
+
+    //$('#mime1').val($(this).val());
+    //console.log(obj.replace(/,/g,"|"));
+
+  }).trigger('change');
+
+
   setInterval(function() {
     $.ajax({
       type: 'POST',
@@ -318,7 +350,7 @@ $(document).ready(function() {
     $('#tab-list').append(
       $('<li><a href="#tab' + tabID + '" role="tab" data-toggle="tab">Configuração ' + tabID + '<button class="close" type="button" title="Remove this page">×</button></a></li>'));
     $('#tab-content').append(
-      $('<div class="tab-pane fade" id="tab' + tabID + '"><form id="teste"><p>' + '</p><div class="form-group"><label for="host">Host:</label><div class="form-input"><input type="text" class="form-control" id="host' + tabID + '" value="xpto' + tabID + '.pt" name="host"></div></div><div class="form-group"><label for="port">Port:</label><div class="form-input"><input type="text" class="form-control" id="port' + tabID + '" value="80"></div></div><div class="form-group"><label for="destination">Destination:</label><div class="form-input"><input type="text" class="form-control" id="destination' + tabID + '" value="http://127.0.0.1:300' + tabID + '"></div></div><div class="checkbox"><label><div class="form-input"><input type="checkbox" id="cachemv' + tabID + '"> Static assets cache</div></label></div></form></div>'));
+      $('<div class="tab-pane fade" id="tab' + tabID + '"><form id="teste"><p>' + '</p><div class="form-group"><label for="host">Host:</label><div class="form-input"><input type="text" class="form-control" id="host' + tabID + '" value="xpto' + tabID + '.pt" name="host"></div></div><div class="form-group"><label for="port">Port:</label><div class="form-input"><input type="text" class="form-control" id="port' + tabID + '" value="80"></div></div><div class="form-group"><label for="host">Mime Types:</label><div class="form-input"><input type="text" class="form-control" id="mimeh' + tabID + '" value="js|css|png|jpg|jpeg|gif|ico" name="host"></div></div><div class="form-group"><label for="destination">Destination:</label><div class="form-input"><input type="text" class="form-control" id="destination' + tabID + '" value="http://127.0.0.1:300' + tabID + '"></div></div><div class="checkbox"><label><div class="form-input"><input type="checkbox" id="cachemv' + tabID + '"> Static assets cache</div></label></div></form></div>'));
   });
   $('#tab-list').on('click', '.close', function() {
 
@@ -336,10 +368,10 @@ $(document).ready(function() {
   var list = document.getElementById("tab-list");
 
   $("#createHosts").button().on("click", function() {
-    printCalc()
+    hostcreate()
   })
 
-  function printCalc() {
+  function hostcreate() {
     var count = 0;
     //Nº de valores dentro do array
 
@@ -350,6 +382,7 @@ $(document).ready(function() {
       var valor1;
       var valor2;
       var valor3;
+      var valor4;
       var valor5;
       $("form#teste input").each(function(index, element) {
         if (conta == 1) {
@@ -368,10 +401,15 @@ $(document).ready(function() {
           console.log('Conta:' + conta);
           valor3 = a;
         } else if (conta == 4) {
-          a = $(this).is(':checked');
+          a = $(this).val();
           console.log('valor:' + a);
           console.log('Conta:' + conta);
           valor4 = a;
+        } else if (conta == 5) {
+          a = $(this).is(':checked');
+          console.log('valor:' + a);
+          console.log('Conta:' + conta);
+          valor5 = a;
         };
         conta = conta + 1;
         if (conta > 4) {
@@ -382,9 +420,10 @@ $(document).ready(function() {
             data: JSON.stringify({
               'host': valor1,
               'port': valor2,
-              'destination': valor3,
+              'mimeh': valor3,
+              'destination': valor4,
               'cache': $(this).is(':checked'),
-              'proxy': valor3
+              'proxy': valor5
             }),
             success: function(data) {
               console.log(data);
