@@ -158,7 +158,7 @@ passport.use(new Strategy(
 
   // Reload Nginx
   app.post('/nginx/reload', function(req, res) {
-    var output = cp.spawnSync('/usr/sbin/nginx', ['-s', 'reload'], {
+    var output = cp.spawnSync('service', ['nginx','restart'], {
       encoding: 'utf8'
     });
     res.send({
