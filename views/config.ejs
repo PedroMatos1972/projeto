@@ -69,12 +69,12 @@
 
   <!-- Page Content -->
   <div class="container">
-	<h1>NGinx Configuration</h1>
+    <h1>NGinx Configuration</h1>
     <!-- Versão Nova Panels -->
     <div class="panel-group" id="accordion">
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h4 class="panel-title">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#confvhosts">Configure Multiple VHost's</a>
 					<span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
 						<a data-toggle="collapse" data-parent="#accordion" href="#confvhosts">
@@ -82,74 +82,77 @@
 						</a>
 					</span>
 				</h4>
-			</div>
-			<div id="confvhosts" class="panel-collapse collapse in">
-				<div class="panel-body">
-					<!-- INIT VHosts -->
-						<div class="row">
-							<div class="col-md-12">
-								<button id="btn-add-tab" type="button" class="btn btn-success pull-right">
+        </div>
+        <div id="confvhosts" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <!-- INIT VHosts -->
+            <div class="row">
+              <div class="col-md-12">
+                <button id="btn-add-tab" type="button" class="btn btn-success pull-right">
 									<i class="glyphicon glyphicon-plus"></i>
 								</button>
-								<!-- Nav tabs -->
-								<div id="tabs">
-									<ul id="tab-list" class="nav nav-tabs" role="tablist" data-tabs="tabs">
-										<li class="active">
-											<a href="#tab1" role="tab" data-toggle="tab">Configuração 1</a>
-										</li>
-									</ul>
-									<!-- Tab panes Configuração de Sites-->
-									<div id="tab-content" class="tab-content">
-										<div class="tab-pane fade in active" id="tab1">
-											<div id="home" class="tab-pane fade in active">
-												<p></p>
-												<form id="teste">
-													<div class="form-group">
-														<label for="host">Host:</label>
-														<div class="form-input">
-															<input type="text" class="form-control" id="host1" value="xpto1.pt" name="host">
-														</div>
-													</div>
-													<div class="form-group">
-														<label for="port">Port:</label>
-														<div class="form-input">
-															<input type="text" class="form-control" id="port1" value="80">
-														</div>
-													</div>
+                <!-- Nav tabs -->
+                <div id="tabs">
+                  <ul id="tab-list" class="nav nav-tabs" role="tablist" data-tabs="tabs">
+                    <li class="active">
+                      <a href="#tab1" role="tab" data-toggle="tab">Configuração 1</a>
+                    </li>
+                  </ul>
+                  <!-- Tab panes Configuração de Sites-->
+                  <div id="tab-content" class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1">
+                      <div id="home" class="tab-pane fade in active">
+                        <p></p>
+                        <form id="teste">
                           <div class="form-group">
-                            <label for="mime">Mime Types:</label>
+                            <label for="host">Host:</label>
                             <div class="form-input">
-                              <input type="text" class="form-control" id="mimeh1" value="">
+                              <input type="text" class="form-control" id="host1" value="xpto1.pt" name="host">
                             </div>
                           </div>
-													<div class="form-group">
-														<label for="destination">Destination:</label>
-														<div class="form-input">
-															<input type="text" class="form-control" id="destination1" value="http://127.0.0.1:3001">
-														</div>
-													</div>
-													<div class="checkbox">
-														<label for="cache">
+                          <div class="form-group">
+                            <label for="port">Port:</label>
+                            <div class="form-input">
+                              <input type="text" class="form-control" id="port1" value="80">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="mime">Mime Types:</label>
+                            <div class="input-group">
+                              <input type="text" class="form-control" id="mimeh1" value="">
+                              <span class="input-group-btn">
+                          	      <a type="button" class="btn btn-primary" href="#mimes" data-toggle="modal">ADD MIMES</a>
+                          	  </span>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="destination">Destination:</label>
+                            <div class="form-input">
+                              <input type="text" class="form-control" id="destination1" value="http://127.0.0.1:3001">
+                            </div>
+                          </div>
+                          <div class="checkbox">
+                            <label for="cache">
 															<div class="form-input">
 																<input type="checkbox" id="cachemv"> Static assets cache
 															</div>
 														</label>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
-								<button id="createHosts" type="button" class="btn btn-danger">Create Multiple Hosts</button>
-							</div>
-						</div>
-						<!-- FIM VHosts -->
-					</div>
-				</div>
-			</div>
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<h4 class="panel-title">
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button id="createHosts" type="button" class="btn btn-danger">Create Multiple Hosts</button>
+              </div>
+            </div>
+            <!-- FIM VHosts -->
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordion" href="#confloadb">Configure Load Balancing</a>
 						<span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
 							<a data-toggle="collapse" data-parent="#accordion" href="#confloadb">
@@ -157,46 +160,46 @@
 							</a>
 						</span>
 					</h4>
-				</div>
-				<div id="confloadb" class="panel-collapse collapse">
-					<div class="panel-body">
-						<!-- INIT Load Balancing -->
-						<form id="loadbal">
-							<div class="form-group">
-								<label for="port">Config File Name:</label>
-								<input type="text" class="form-control" id="filenamelb" value="1-loadbalancing">
-							</div>
-							<div class="form-group">
-								<label for="host">Hosts:</label>
-								<input type="text" class="form-control" id="host1lb" value="server www.sapo1.pt" mytext[] "">
-								</br>
-								<div class="input_fields_wrap">
-									<input type="hidden" class="form-control" id="host3lb" value="" mytext[] "">
-									<input type="hidden" class="form-control" id="host4lb" value="" mytext[] "">
-									<input type="text" class="form-control" id="host2lb" value="server www.sapo2.pt" mytext[] "">
-									<span class="input-group-btn">
+        </div>
+        <div id="confloadb" class="panel-collapse collapse">
+          <div class="panel-body">
+            <!-- INIT Load Balancing -->
+            <form id="loadbal">
+              <div class="form-group">
+                <label for="port">Config File Name:</label>
+                <input type="text" class="form-control" id="filenamelb" value="1-loadbalancing">
+              </div>
+              <div class="form-group">
+                <label for="host">Hosts:</label>
+                <input type="text" class="form-control" id="host1lb" value="server www.sapo1.pt" mytext[] "">
+                </br>
+                <div class="input_fields_wrap">
+                  <input type="hidden" class="form-control" id="host3lb" value="" mytext[] "">
+                  <input type="hidden" class="form-control" id="host4lb" value="" mytext[] "">
+                  <input type="text" class="form-control" id="host2lb" value="server www.sapo2.pt" mytext[] "">
+                  <span class="input-group-btn">
 										<button class="btn btn-success add_field_button" type="button">Add Server</button>
 									</span>
-									</br>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="port">Port:</label>
-								<input type="text" class="form-control" id="portlb" value="80">
-							</div>
-							<div class="checkbox">
-								<label><input type="checkbox" id="cachelb"> Static assets cache</label>
-							</div>
-							<br></br>
-							<button id="createLB" type="button" class="btn btn-info">Create Host</button>
-						</form>
-						<!-- FIM Load Balancing -->
-					</div>
-				</div>
-			</div>
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<h4 class="panel-title">
+                  </br>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="port">Port:</label>
+                <input type="text" class="form-control" id="portlb" value="80">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" id="cachelb"> Static assets cache</label>
+              </div>
+              <br></br>
+              <button id="createLB" type="button" class="btn btn-info">Create Host</button>
+            </form>
+            <!-- FIM Load Balancing -->
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordion" href="#confredirec">Configure Redirect</a>
 						<span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
 							<a data-toggle="collapse" data-parent="#accordion" href="#confredirec">
@@ -204,161 +207,164 @@
 							</a>
 						</span>
 					</h4>
-				</div>
-				<div id="confredirec" class="panel-collapse collapse">
-					<div class="panel-body">
-						<!-- INIT Redirect -->
-						<!--<div class="container"></div>-->
-						<div id="exTab1" class="container">
-							<ul class="nav nav-pills">
-								<li class="active"><a href="#1a" data-toggle="tab">HTTP to HTTPS</a></li>
-								<li><a href="#2a" data-toggle="tab">non-WWW to WWW</a></li>
-								<li><a href="#3a" data-toggle="tab">IP address to domain name</a></li>
-							</ul>
+        </div>
+        <div id="confredirec" class="panel-collapse collapse">
+          <div class="panel-body">
+            <!-- INIT Redirect -->
+            <!--<div class="container"></div>-->
+            <div id="exTab1" class="container">
+              <ul class="nav nav-pills">
+                <li class="active"><a href="#1a" data-toggle="tab">HTTP to HTTPS</a></li>
+                <li><a href="#2a" data-toggle="tab">non-WWW to WWW</a></li>
+                <li><a href="#3a" data-toggle="tab">IP address to domain name</a></li>
+              </ul>
 
-							<div class="tab-content clearfix">
-								<div class="tab-pane active" id="1a">
-									<!-- INIT Form -->
-									<div class="container">
-										<form id="opcao1">
-											<br></br>
-											<div class="col-sm-11">
-												<div class="form-group">
-													<label for="port">Config File Name:</label>
-													<input type="text" class="form-control" id="filenameopt1" value="1-redirect">
-												</div>
-												<div class="form-group">
-													<label for="host1">Host 1 (HTTP):</label>
-													<input type="text" class="form-control" id="host1opt1" value="www.xpto.pt">
-												</div>
-												<div class="form-group">
-													<label for="host2">Host 2 (HTTPS):</label>
-													<input type="text" class="form-control" id="host2opt1" value="www.xpto.pt">
-												</div>
-												<div class="form-group">
-													<label for="port">Port:</label>
-													<input type="text" class="form-control" id="portopt1" value="80">
-												</div>
-												<div class="form-group">
-													<label for="destination">Destination:</label>
-													<input type="text" class="form-control" id="destinationopt1" value="http://127.0.0.1:3001">
-												</div>
-												<div class="checkbox">
-													<label><input type="checkbox" id="cacheopt1"> Static assets cache</label>
-												</div>
-												<button id="createRedirOpt1" type="button" class="btn btn-warning">Create Host</button>
-											</div>
-										</form>
-									</div>
-									<!-- FIM Redirect -->
-								</div>
-								<div class="tab-pane" id="2a">
-									<div class="container">
-										<form id="opcao2">
-											<br></br>
-											<div class="col-sm-11">
-												<div class="form-group">
-													<label for="port">Config File Name:</label>
-													<input type="text" class="form-control" id="filenameopt2" value="2-redirect">
-												</div>
-												<div class="form-group">
-													<label for="host1">Host 1 (non WWW):</label>
-													<input type="text" class="form-control" id="host1opt2" value="xpto.pt">
-												</div>
-												<div class="form-group">
-													<label for="host2">Host 2 (WWW):</label>
-													<input type="text" class="form-control" id="host2opt2" value="www.xpto.pt">
-												</div>
-												<div class="form-group">
-													<label for="port">Port:</label>
-													<input type="text" class="form-control" id="portopt2" value="80">
-												</div>
-												<div class="form-group">
-													<label for="destination">Destination:</label>
-													<input type="text" class="form-control" id="destinationopt2" value="http://127.0.0.1:3001">
-												</div>
-												<div class="checkbox">
-													<label><input type="checkbox" id="cacheopt2"> Static assets cache</label>
-												</div>
-												<button id="createRedirOpt2" type="button" class="btn btn-warning">Create Host</button>
-											</div>
-										</form>
-									</div>
-								</div>
-								<div class="tab-pane" id="3a">
-									<div class="container">
-										<form id="opcao3">
-											<br></br>
-											<div class="col-sm-11">
-												<div class="form-group">
-													<label for="port">Config File Name:</label>
-													<input type="text" class="form-control" id="filenameopt3" value="3-redirect">
-												</div>
-												<div class="form-group">
-													<label for="host1">Host 1 (IP):</label>
-													<input type="text" class="form-control" id="host1opt3" value="193.137.5.8">
-												</div>
-												<div class="form-group">
-													<label for="host2">Host 2 (domain name):</label>
-													<input type="text" class="form-control" id="host2opt3" value="www.xpto.pt">
-												</div>
-												<div class="form-group">
-													<label for="port">Port:</label>
-													<input type="text" class="form-control" id="portopt3" value="80">
-												</div>
-												<div class="form-group">
-													<label for="destination">Destination:</label>
-													<input type="text" class="form-control" id="destinationopt3" value="http://127.0.0.1:3001">
-												</div>
-												<div class="checkbox">
-													<label><input type="checkbox" id="cacheopt3"> Static assets cache</label>
-												</div>
-												<button id="createRedirOpt3" type="button" class="btn btn-warning">Create Host</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+              <div class="tab-content clearfix">
+                <div class="tab-pane active" id="1a">
+                  <!-- INIT Form -->
+                  <div class="container">
+                    <form id="opcao1">
+                      <br></br>
+                      <div class="col-sm-11">
+                        <div class="form-group">
+                          <label for="port">Config File Name:</label>
+                          <input type="text" class="form-control" id="filenameopt1" value="1-redirect">
+                        </div>
+                        <div class="form-group">
+                          <label for="host1">Host 1 (HTTP):</label>
+                          <input type="text" class="form-control" id="host1opt1" value="www.xpto.pt">
+                        </div>
+                        <div class="form-group">
+                          <label for="host2">Host 2 (HTTPS):</label>
+                          <input type="text" class="form-control" id="host2opt1" value="www.xpto.pt">
+                        </div>
+                        <div class="form-group">
+                          <label for="port">Port:</label>
+                          <input type="text" class="form-control" id="portopt1" value="80">
+                        </div>
+                        <div class="form-group">
+                          <label for="destination">Destination:</label>
+                          <input type="text" class="form-control" id="destinationopt1" value="http://127.0.0.1:3001">
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" id="cacheopt1"> Static assets cache</label>
+                        </div>
+                        <button id="createRedirOpt1" type="button" class="btn btn-warning">Create Host</button>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- FIM Redirect -->
+                </div>
+                <div class="tab-pane" id="2a">
+                  <div class="container">
+                    <form id="opcao2">
+                      <br></br>
+                      <div class="col-sm-11">
+                        <div class="form-group">
+                          <label for="port">Config File Name:</label>
+                          <input type="text" class="form-control" id="filenameopt2" value="2-redirect">
+                        </div>
+                        <div class="form-group">
+                          <label for="host1">Host 1 (non WWW):</label>
+                          <input type="text" class="form-control" id="host1opt2" value="xpto.pt">
+                        </div>
+                        <div class="form-group">
+                          <label for="host2">Host 2 (WWW):</label>
+                          <input type="text" class="form-control" id="host2opt2" value="www.xpto.pt">
+                        </div>
+                        <div class="form-group">
+                          <label for="port">Port:</label>
+                          <input type="text" class="form-control" id="portopt2" value="80">
+                        </div>
+                        <div class="form-group">
+                          <label for="destination">Destination:</label>
+                          <input type="text" class="form-control" id="destinationopt2" value="http://127.0.0.1:3001">
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" id="cacheopt2"> Static assets cache</label>
+                        </div>
+                        <button id="createRedirOpt2" type="button" class="btn btn-warning">Create Host</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="tab-pane" id="3a">
+                  <div class="container">
+                    <form id="opcao3">
+                      <br></br>
+                      <div class="col-sm-11">
+                        <div class="form-group">
+                          <label for="port">Config File Name:</label>
+                          <input type="text" class="form-control" id="filenameopt3" value="3-redirect">
+                        </div>
+                        <div class="form-group">
+                          <label for="host1">Host 1 (IP):</label>
+                          <input type="text" class="form-control" id="host1opt3" value="193.137.5.8">
+                        </div>
+                        <div class="form-group">
+                          <label for="host2">Host 2 (domain name):</label>
+                          <input type="text" class="form-control" id="host2opt3" value="www.xpto.pt">
+                        </div>
+                        <div class="form-group">
+                          <label for="port">Port:</label>
+                          <input type="text" class="form-control" id="portopt3" value="80">
+                        </div>
+                        <div class="form-group">
+                          <label for="destination">Destination:</label>
+                          <input type="text" class="form-control" id="destinationopt3" value="http://127.0.0.1:3001">
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" id="cacheopt3"> Static assets cache</label>
+                        </div>
+                        <button id="createRedirOpt3" type="button" class="btn btn-warning">Create Host</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- container -->
-	<div class="container">
+  <div class="container">
     <button id="testNginx" type="button" class="btn btn-warning">Test nginx</button>
-		<button id="reloadNginx" type="button" class="btn btn-danger">Reload nginx</button>
-		<a id="conectNginx" type="button" class="btn btn-success" href="#success" data-toggle="modal">List Config Files</a>
-    <a type="button" class="btn btn-primary" href="#mimes" data-toggle="modal">ADD MIMES</a>
+    <button id="reloadNginx" type="button" class="btn btn-danger">Reload nginx</button>
+    <a id="conectNginx" type="button" class="btn btn-success" href="#success" data-toggle="modal">List Config Files</a>
+    <!--<a type="button" class="btn btn-primary" href="#mimes" data-toggle="modal">ADD MIMES</a>-->
     <!-- Modal List Files -->
-		<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header modal-header-success" style="background-color:#5CB85C; color:white;">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h1><i class="glyphicon glyphicon glyphicon-saved"></i>List Config Files</h1>
-					</div>
-					<div class="modal-body">
-						<div class="mensagem" id="mensagem"></div>
-						<div id="ficheiros"></div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.Modal List Files -->
+    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal-header-success" style="background-color:#5CB85C; color:white;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h1><i class="glyphicon glyphicon glyphicon-saved"></i>List Config Files</h1>
+          </div>
+          <div class="modal-body">
+            <div class="mensagem" id="mensagem"></div>
+            <div id="ficheiros"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.Modal List Files -->
 
     <!-- Modal List Mimes -->
-		<div class="modal fade" id="mimes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header modal-header-primary" style="background-color:#286090; color:white;">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h1><i class="glyphicon glyphicon glyphicon-saved"></i>MIMES</h1>
-					</div>
-					<div class="modal-body">
+    <div class="modal fade" id="mimes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal-header-primary" style="background-color:#286090; color:white;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h1><i class="glyphicon glyphicon glyphicon-saved"></i>MIMES</h1>
+          </div>
+          <div class="modal-body">
             <!-- MIMES -->
             <div class="container">
               <div class="col-sm-8">
@@ -422,29 +428,29 @@
                   <div class="example example_markup">
                     <div class="bs-example">
                       <input id="mime" type="text" value="" data-role="tagsinput" />
-                            <!--<pre class="val"><code data-language="javascript"></code></pre>
+                      <!--<pre class="val"><code data-language="javascript"></code></pre>
                             <pre class="items"><code data-language="javascript"></code></pre>-->
-                            <input id="mime1" type="text" value="" class="form-control" />
+                      <input id="mime1" type="text" value="" class="form-control" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <!-- /.MIMES -->
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.Modal List Mimes -->
-	</div><!-- /.container -->
-
-
-
-
-	<br />
-	<br />
-	<br />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.Modal List Mimes -->
+  </div>
+  <!-- /.container -->
+  <br />
+  <br />
+  <br />
 
   <% include layout-foot.ejs %>
