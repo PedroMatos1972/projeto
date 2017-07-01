@@ -272,116 +272,116 @@ passport.use(new Strategy(
 
   //Load Balancing
   app.post('/hostlb', function(req, res) {
-    //console.log(req.body);
+  //console.log(req.body);
 
-    var confcontent = utils.prepareConf('loadbalancing', {
-      'SERVERNAME1': req.body.host1lb,
-      'SERVERNAME2': req.body.host2lb,
-      'SERVERNAME3': req.body.host3lb,
-      'SERVERNAME4': req.body.host4lb,
-      'PORT': req.body.portlb,
-      'PROXY': req.body.destinationlb,
-      'CACHE': req.body.cachelb === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
-      'PROXY2': req.body.proxylb
-    });
+  var confcontent = utils.prepareConf('loadbalancing', {
+    'SERVERNAME1': req.body.host1lb,
+    'SERVERNAME2': req.body.host2lb,
+    'SERVERNAME3': req.body.host3lb,
+    'SERVERNAME4': req.body.host4lb,
+    'PORT': req.body.portlb,
+    'CACHE': req.body.cachelb === true ? 'include /etc/nginx/dashboard/cache.conf;' : ''
+  });
 
-    fs.writeFile('/etc/nginx/conf.d/' + req.body.filenamelb + '.conf', confcontent, function(err) {
-      if (err) {
-        return res.status(500).send({
-          'status': 'failed',
-          'message': err
-        });
-      }
-
-      res.send({
-        'status': 'created'
+  fs.writeFile('/etc/nginx/conf.d/' + req.body.filenamelb + '.conf', confcontent, function(err) {
+    if (err) {
+      return res.status(500).send({
+        'status': 'failed',
+        'message': err
       });
+    }
+
+    res.send({
+      'status': 'created'
     });
   });
+});
+
 
   // Redirect OPT1 (HTTP to HTTPs)
   app.post('/hostopt1', function(req, res) {
-    //console.log('File Name: ' + req.body.hostop1);
-    //console.log(req.body);
+  //console.log('File Name: ' + req.body.hostop1);
+  //console.log(req.body);
 
-    var confcontent = utils.prepareConf('redirectopt1', {
-      'SERVERNAME': req.body.host1opt1,
-      'SERVERNAMEHTTPS': req.body.host2opt1,
-      'PORT': req.body.portopt1,
-      'PROXY': req.body.destinationopt1,
-      'CACHE': req.body.cacheopt1 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
-      'PROXY2': req.body.proxyopt1
-    });
+  var confcontent = utils.prepareConf('redirectopt1', {
+    'SERVERNAME': req.body.host1opt1,
+    'SERVERNAMEHTTPS': req.body.host2opt1,
+    'PORT': req.body.portopt1,
+    'PROXY': req.body.destinationopt1,
+    'CACHE': req.body.cacheopt1 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
+    'PROXY2': req.body.proxyopt1
+  });
 
-    fs.writeFile('/etc/nginx/conf.d/' + req.body.hostop1 + '.conf', confcontent, function(err) {
-      if (err) {
-        return res.status(500).send({
-          'status': 'failed',
-          'message': err
-        });
-      }
-
-      res.send({
-        'status': 'created'
+  fs.writeFile('/etc/nginx/conf.d/' + req.body.hostop1 + '.conf', confcontent, function(err) {
+    if (err) {
+      return res.status(500).send({
+        'status': 'failed',
+        'message': err
       });
+    }
+
+    res.send({
+      'status': 'created'
     });
   });
+});
 
   // Redirect OPT2 (non WWW to WWW)
   app.post('/hostopt2', function(req, res) {
-    //console.log('File Name: ' + req.body.hostop2);
-    //console.log(req.body);
+  //console.log('File Name: ' + req.body.hostop2);
+  //console.log(req.body);
 
-    var confcontent = utils.prepareConf('redirectopt2', {
-      'SERVERNAMENONWWW': req.body.host1opt2,
-      'SERVERNAMEWWW': req.body.host2opt2,
-      'PORT': req.body.portopt2,
-      'PROXY': req.body.destinationopt2,
-      'CACHE': req.body.cacheopt2 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
-      'PROXY2': req.body.proxyopt2
-    });
+  var confcontent = utils.prepareConf('redirectopt2', {
+    'SERVERNAMENONWWW': req.body.host1opt2,
+    'SERVERNAMEWWW': req.body.host2opt2,
+    'PORT': req.body.portopt2,
+    'PROXY': req.body.destinationopt2,
+    'CACHE': req.body.cacheopt2 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
+    'PROXY2': req.body.proxyopt2
+  });
 
-    fs.writeFile('/etc/nginx/conf.d/' + req.body.hostop2 + '.conf', confcontent, function(err) {
-      if (err) {
-        return res.status(500).send({
-          'status': 'failed',
-          'message': err
-        });
-      }
-
-      res.send({
-        'status': 'created'
+  fs.writeFile('/etc/nginx/conf.d/' + req.body.hostop2 + '.conf', confcontent, function(err) {
+    if (err) {
+      return res.status(500).send({
+        'status': 'failed',
+        'message': err
       });
+    }
+
+    res.send({
+      'status': 'created'
     });
   });
+});
+
 
   // Redirect OPT3 (IP Address to Domain Name)
   app.post('/hostopt3', function(req, res) {
-    //console.log('File Name: ' + req.body.hostop3);
-    //console.log(req.body);
+  //console.log('File Name: ' + req.body.hostop3);
+  //console.log(req.body);
 
-    var confcontent = utils.prepareConf('redirectopt3', {
-      'SERVERIP': req.body.host1opt3,
-      'SERVERDOMAIN': req.body.host2opt3,
-      'PORT': req.body.portopt3,
-      'PROXY': req.body.destinationopt3,
-      'CACHE': req.body.cacheopt3 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
-      'PROXY2': req.body.proxyopt3
-    });
+  var confcontent = utils.prepareConf('redirectopt3', {
+    'SERVERIP': req.body.host1opt3,
+    'SERVERDOMAIN': req.body.host2opt3,
+    'PORT': req.body.portopt3,
+    'PROXY': req.body.destinationopt3,
+    'CACHE': req.body.cacheopt3 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
+    'PROXY2': req.body.proxyopt3
+  });
 
-    fs.writeFile('/etc/nginx/conf.d/' + req.body.hostop3 + '.conf', confcontent, function(err) {
-      if (err) {
-        return res.status(500).send({
-          'status': 'failed',
-          'message': err
-        });
-      }
-
-      res.send({
-        'status': 'created'
+  fs.writeFile('/etc/nginx/conf.d/' + req.body.hostop3 + '.conf', confcontent, function(err) {
+    if (err) {
+      return res.status(500).send({
+        'status': 'failed',
+        'message': err
       });
+    }
+
+    res.send({
+      'status': 'created'
     });
   });
+});
 
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
