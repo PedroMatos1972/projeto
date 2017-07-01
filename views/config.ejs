@@ -116,12 +116,22 @@ $(function() {
                             <input type="text" class="form-control" id="port1" value="80">
                           </div>
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                           <label for="mime">Mime Types:</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="mimeh1" value="" disabled="disabled">
                             <span class="input-group-btn">
                               <a type="button" class="btn btn-primary" href="#mimes" data-toggle="modal">ADD MIMES</a>
+                            </span>
+                          </div>
+                        </div>-->
+                        <div class="form-group">
+                          <label for="mime">Mime Types:</label>
+                          <div id="mimediv" class="input-group">
+                            <input id="mimeh1" type="text" class="form-control" value="">
+                            <span class="input-group-btn">
+                              <!--<a type="button" class="btn btn-primary" href="#mimesmodal" data-toggle="modal">ADD MIMES</a>-->
+                              <button class="btn btn-danger mime-me" data-toggle="modal" data-target="#mimes" type="button" id="mimesbtn1">Mimes</button>
                             </span>
                           </div>
                         </div>
