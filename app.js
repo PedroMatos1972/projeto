@@ -31,221 +31,251 @@ var db = require('./db');
 passport.use(new Strategy(
   function(username, password, cb) {
     db.users.findByUsername(username, function(err, user) {
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false); }
-      if (user.password != password) { return cb(null, false); }
+      if (err) {
+        return cb(err);
+      }
+      if (!user) {
+        return cb(null, false);
+      }
+      if (user.password != password) {
+        return cb(null, false);
+      }
       return cb(null, user);
     });
   }));
 
-  passport.serializeUser(function(user, cb) {
-    cb(null, user.id);
-  });
+passport.serializeUser(function(user, cb) {
+  cb(null, user.id);
+});
 
-  passport.deserializeUser(function(id, cb) {
-    db.users.findById(id, function (err, user) {
-      if (err) { return cb(err); }
-      cb(null, user);
+passport.deserializeUser(function(id, cb) {
+  db.users.findById(id, function(err, user) {
+    if (err) {
+      return cb(err);
+    }
+    cb(null, user);
+  });
+});
+//-----------------
+var app = express();
+//--------------------
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+//--------
+app.use(require('morgan')('combined'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({
+  extended: true
+}));
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+// Define routes.
+
+app.get('/',
+  function(req, res) {
+    res.render('home', {
+      user: req.user
     });
   });
-  //-----------------
-  var app = express();
-  //--------------------
-  // view engine setup
-  app.set('views', path.join(__dirname, 'views'));
-  app.set('view engine', 'ejs');
-  //--------
-  app.use(require('morgan')('combined'));
-  app.use(require('cookie-parser')());
-  app.use(require('body-parser').urlencoded({ extended: true }));
-  app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
-  app.use(passport.initialize());
-  app.use(passport.session());
-  // Define routes.
-
-  app.get('/',
+app.get('/login',
   function(req, res) {
-    res.render('home', { user: req.user });
-  });
-
-  app.get('/login',
-  function(req, res){
     res.render('login');
   });
 
-  app.post('/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
+app.post('/login',
+  passport.authenticate('local', {
+    failureRedirect: '/login'
+  }),
   function(req, res) {
     res.redirect('/start');
   });
 
-  app.get('/server',
+app.get('/server',
   require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res){
-    res.render('server', { user: req.user });
+  function(req, res) {
+    res.render('server', {
+      user: req.user
+    });
   });
 
-  app.get('/logout',
-  function(req, res){
+app.get('/logout',
+  function(req, res) {
     req.logout();
     res.redirect('/');
   });
 
-  app.get('/profile',
+app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res){
-    res.render('profile', { user: req.user });
+  function(req, res) {
+    res.render('profile', {
+      user: req.user
+    });
   });
 
-  app.get('/start',
+app.get('/start',
   require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res){
-    res.render('start', { user: req.user });
+  function(req, res) {
+    res.render('start', {
+      user: req.user
+    });
   });
 
-  app.get('/config',
+app.get('/config',
   require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res){
-    res.render('config', { user: req.user });
+  function(req, res) {
+    res.render('config', {
+      user: req.user
+    });
   });
 
 
-  app.get('/contact',
+app.get('/contact',
   require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res){
-    res.render('contact', { user: req.user });
+  function(req, res) {
+    res.render('contact', {
+      user: req.user
+    });
   });
-  //-------
-  // uncomment after placing your favicon in /public
-  //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-  app.use(logger('dev'));
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(cookieParser());
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.use(expressLayouts); //este pertence ao Render dos Layout
-  app.use('/', index);
-  app.use('/users', users);
-  //----main----------------------
-  //
-  //
-  //
-  app.use(bodyParser.json());
+//-------
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressLayouts); //este pertence ao Render dos Layout
+app.use('/', index);
+app.use('/users', users);
+//----main----------------------
+//
+//
+//
+app.use(bodyParser.json());
+var exec = require('child_process').exec;
+//---FIM Main--------------------
+//
+//
+//
+//----- main------------------------
+//
+//
+//
+//
+
+// List Files Configuration
+app.post('/folder', function(req, res) {
+  var output = cp.spawnSync('sh', ['scripts/script_listap.sh'], {
+    encoding: 'utf8'
+  });
+  //console.log(output.stdout.toString());
+  res.send({
+    'status': 'ok',
+    'stdout': output.stdout.toString(),
+    'stderr': output.stderr.toString(),
+  });
+});
+
+// Reload Nginx
+app.post('/nginx/reload', function(req, res) {
+  var output = cp.spawnSync('service', ['nginx', 'restart'], {
+    encoding: 'utf8'
+  });
+  res.send({
+    'status': 'ok',
+    'stdout': output.stdout.toString(),
+    'stderr': output.stderr.toString(),
+  });
+});
+
+// Connect Nginx
+app.post('/conect', function(req, res) {
+  var output = cp.spawnSync('sh', ['scripts/script_ligacoes.sh'], {
+    encoding: 'utf8'
+  });
+
+  res.send({
+    'status': 'ok',
+    'stdout': output.stdout.toString(),
+    'stderr': output.stderr.toString(),
+  });
+});
+
+// Total Memory
+app.post('/conectmemtotal', function(req, res) {
+  var output = cp.spawnSync('sh', ['scripts/script_memtotal.sh'], {
+    encoding: 'utf8'
+  });
+
+  res.send({
+    'status': 'ok',
+    'stdout': output.stdout.toString(),
+    'stderr': output.stderr.toString(),
+  });
+  console.log('out:', output);
+});
+
+// Memory Free
+app.post('/conectmemfree', function(req, res) {
+  var output = cp.spawnSync('sh', ['scripts/script_memfree.sh'], {
+    encoding: 'utf8'
+  });
+
+  res.send({
+    'status': 'ok',
+    'stdout': output.stdout.toString(),
+    'stderr': output.stderr.toString(),
+  });
+});
+
+// Memory Avail
+app.post('/conectmemavail', function(req, res) {
+  var output = cp.spawnSync('sh', ['scripts/script_memavail.sh'], {
+    encoding: 'utf8'
+  });
+
+  res.send({
+    'status': 'ok',
+    'stdout': output.stdout.toString(),
+    'stderr': output.stderr.toString(),
+  });
+});
+app.post('/nginx/test', function(req, res) {
+  var output = cp.spawnSync('/usr/sbin/nginx', ['-t'], {
+    encoding: 'utf8'
+  });
+
+  res.send({
+    'status': 'ok',
+    'stdout': output.stdout.toString(),
+    'stderr': output.stderr.toString(),
+  });
+});
+
+
+// Remover Ficheiros
+app.post('/remover', function(req, res) {
   var exec = require('child_process').exec;
-  //---FIM Main--------------------
-  //
-  //
-  //
-  //----- main------------------------
-  //
-  //
-  //
-  //
-
-  // List Files Configuration
-  app.post('/folder', function(req, res) {
-    var output = cp.spawnSync('sh', ['scripts/script_listap.sh'], {
-      encoding: 'utf8'
-    });
-    console.log("Ficheiros  Nginx:" + output.stdout.toString());
-    res.send({
-      'status': 'ok',
-      'stdout': output.stdout.toString(),
-      'stderr': output.stderr.toString(),
-    });
+  var ligacaossh = exec('rm -rf /etc/nginx/conf.d/' + req.body.labelt, function(err, ligacaossh, stderr) {
+    console.log("Ficheiro a Apagar:" + ligacaossh);
   });
+  //console.log(req.body.labelt);
+});
 
-  // Reload Nginx
-  app.post('/nginx/reload', function(req, res) {
-    var output = cp.spawnSync('service', ['nginx','restart'], {
-      encoding: 'utf8'
-    });
-    res.send({
-      'status': 'ok',
-      'stdout': output.stdout.toString(),
-      'stderr': output.stderr.toString(),
-    });
-  });
-
-  // Connect Nginx
-  app.post('/conect', function(req, res) {
-    var output = cp.spawnSync('sh', ['scripts/script_ligacoes.sh'], {
-      encoding: 'utf8'
-    });
-
-    res.send({
-      'status': 'ok',
-      'stdout': output.stdout.toString(),
-      'stderr': output.stderr.toString(),
-    });
-  });
-
-  // Total Memory
-  app.post('/conectmemtotal', function(req, res) {
-    var output = cp.spawnSync('sh', ['scripts/script_memtotal.sh'], {
-      encoding: 'utf8'
-    });
-
-    res.send({
-      'status': 'ok',
-      'stdout': output.stdout.toString(),
-      'stderr': output.stderr.toString(),
-    });
-    console.log('out:', output);
-  });
-
-  // Memory Free
-  app.post('/conectmemfree', function(req, res) {
-    var output = cp.spawnSync('sh', ['scripts/script_memfree.sh'], {
-      encoding: 'utf8'
-    });
-
-    res.send({
-      'status': 'ok',
-      'stdout': output.stdout.toString(),
-      'stderr': output.stderr.toString(),
-    });
-  });
-
-  // Memory Avail
-  app.post('/conectmemavail', function(req, res) {
-    var output = cp.spawnSync('sh', ['scripts/script_memavail.sh'], {
-      encoding: 'utf8'
-    });
-
-    res.send({
-      'status': 'ok',
-      'stdout': output.stdout.toString(),
-      'stderr': output.stderr.toString(),
-    });
-  });
-  app.post('/nginx/test', function(req, res) {
-    var output = cp.spawnSync('/usr/sbin/nginx', ['-t'], {
-      encoding: 'utf8'
-    });
-
-    res.send({
-      'status': 'ok',
-      'stdout': output.stdout.toString(),
-      'stderr': output.stderr.toString(),
-    });
-  });
-
-
-  // Remover Ficheiros
-  app.post('/remover', function(req, res) {
-    var exec = require('child_process').exec;
-    var ligacaossh = exec('rm -rf /etc/nginx/conf.d/' + req.body.labelt , function(err, ligacaossh, stderr){
-      console.log("Ficheiro a Apagar:" + ligacaossh);
-    });
-    //console.log(req.body.labelt);
-  });
-
-  /* Create Single and Multi Host(s)
-  * @params: SERVERNAME, PORT, PROXY, CACHE
-  */
-  app.post('/host', function(req, res) {
+/* Create Single and Multi Host(s)
+ * @params: SERVERNAME, PORT, PROXY, CACHE
+ */
+app.post('/host', function(req, res) {
   var confcontent = utils.prepareConf('simpleproxy', {
     'SERVERNAME': req.body.host,
     'PORT': req.body.port,
@@ -270,8 +300,8 @@ passport.use(new Strategy(
 });
 
 
-  //Load Balancing
-  app.post('/hostlb', function(req, res) {
+//Load Balancing
+app.post('/hostlb', function(req, res) {
   //console.log(req.body);
 
   var confcontent = utils.prepareConf('loadbalancing', {
@@ -298,8 +328,8 @@ passport.use(new Strategy(
 });
 
 
-  // Redirect OPT1 (HTTP to HTTPs)
-  app.post('/hostopt1', function(req, res) {
+// Redirect OPT1 (HTTP to HTTPs)
+app.post('/hostopt1', function(req, res) {
   //console.log('File Name: ' + req.body.hostop1);
   //console.log(req.body);
 
@@ -326,8 +356,8 @@ passport.use(new Strategy(
   });
 });
 
-  // Redirect OPT2 (non WWW to WWW)
-  app.post('/hostopt2', function(req, res) {
+// Redirect OPT2 (non WWW to WWW)
+app.post('/hostopt2', function(req, res) {
   //console.log('File Name: ' + req.body.hostop2);
   //console.log(req.body);
 
@@ -355,8 +385,8 @@ passport.use(new Strategy(
 });
 
 
-  // Redirect OPT3 (IP Address to Domain Name)
-  app.post('/hostopt3', function(req, res) {
+// Redirect OPT3 (IP Address to Domain Name)
+app.post('/hostopt3', function(req, res) {
   //console.log('File Name: ' + req.body.hostop3);
   //console.log(req.body);
 
@@ -383,22 +413,22 @@ passport.use(new Strategy(
   });
 });
 
-  // catch 404 and forward to error handler
-  app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-  });
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
-  // error handler
-  app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
-  });
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
-  module.exports = app;
+module.exports = app;
