@@ -246,28 +246,28 @@ passport.use(new Strategy(
   * @params: SERVERNAME, PORT, PROXY, CACHE
   */
   app.post('/host', function(req, res) {
-    var confcontent = utils.prepareConf('simpleproxy', {
-      'SERVERNAME': req.body.host,
-      'PORT': req.body.port,
-      'MIME': req.body.mimeh,
-      'PROXY': req.body.destination,
-      'CACHE': req.body.cache === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
-      'PROXY2': req.body.proxy
-    });
+  var confcontent = utils.prepareConf('simpleproxy', {
+    'SERVERNAME': req.body.host,
+    'PORT': req.body.port,
+    'MIME': req.body.mimeh,
+    'PROXY': req.body.destination,
+    'CACHE': req.body.cache === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
+    'PROXY2': req.body.proxy
+  });
 
-    fs.writeFile('/etc/nginx/conf.d/' + req.body.host + '.conf', confcontent, function(err) {
-      if (err) {
-        return res.status(500).send({
-          'status': 'failed',
-          'message': err
-        });
-      }
-
-      res.send({
-        'status': 'created'
+  fs.writeFile('/etc/nginx/conf.d/' + req.body.host + '.conf', confcontent, function(err) {
+    if (err) {
+      return res.status(500).send({
+        'status': 'failed',
+        'message': err
       });
+    }
+
+    res.send({
+      'status': 'created'
     });
   });
+});
 
 
   //Load Balancing
