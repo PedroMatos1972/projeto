@@ -1,113 +1,26 @@
 // C L I E N T E
 $(document).ready(function() {
-  var tabIDs;
-  var arr = {};
-  var texto;
-  var valor = 0;
-
-  //$('#conectNginx').on('click', function(req, res) {
-  setInterval(function() {
+var tabIDs;
+  $('#conectNginx').on('click', function(req, res) {
     $.ajax({
       type: 'POST',
       url: "/folder",
       data: {},
       success: function(data) {
-        //console.log(data);
-        //console.log(data.message);
-        arr = data.stdout;
-        //alert(data.stdout);
-        //alert(arr);
-        texto = data.stdout;
-        //arr = ["1-cache.conf", "3-redirect.conf", "default.conf", "xpto1.pt.conf", "xpto.pt.conf"];
-        var out = JSON.parse(texto);
-        out = JSON.stringify(out);
-        //alert(out);
-        var out = JSON.parse(texto);
-        //alert(out[1]);
-        var out1 = out.length;
-        //if (atrib >= 1){
-        //  $('#fich').parent('div').remove();
-        //  $('#ficheiros').append('<div id="fich"></div>');
-        //};
-        valor = out.length
-        for (var i = 0; i < out.length; i++) {
-          if (i >= 2) {
-            console.log(out[i]);
-            //$('#ficheiros').text(out[i]);
-            $('#ficheiros').append('<div><div id="rmv" class="input-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/><span class="input-group-btn"><button class="btn btn-danger remove-me" type="button" id="remove' + i + '">Remove</button></span></div></br></div>'); //add input box
-          } else if (i == 1) {
-
-            $('#ficheiros').append('<div class="form-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/></div></div>'); //add input box
-          } else if (i == 0) {
-            $('#ficheiros').html('<div><div class="form-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/></div></div>'); //add input box
-          };
-          //alert(labelt);
-        };
-        atrib = 1;
-        //alert(out1);
-        //$('#ficheiros').text(data.stdout);
+        console.log(data);
+        console.log(data.message);
+        alert(data.stdout);
+        $('#mensagem').text(data.stdout);
         $(data).find("a:contains(.config)").each(function() {
           // will loop through
-          alert("Found this files: " + $(data.stdout).attr("href"));
+          alert("Found a file: " + $(data.stdout).attr("href"));
           console.log(data);
-
         });
       },
       dataType: 'json',
       contentType: 'application/json'
     });
-    //});
-  }, 5000);
-
-  $(document).on("click", ".remove-me", function() {
-    console.log($(this).parent().parent().find('input').val());
-    $.ajax({
-      type: 'POST',
-      url: '/remover',
-      data: JSON.stringify({
-        'labelt': $(this).parent().parent().find('input').val()
-      }),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
   });
-
-  // MIME Types
-  $(document).on("click", ".mime-type", function() {
-    console.log('TESTE1:' + $(this).val());
-    //$('#botoes').append('<input type="text" value="' + $(this).val() + '" data-role="tagsinput" />' ); //add input box
-    //$('#mime').val()=$(this).val();
-    $('#mime').tagsinput('add', $(this).val());
-  });
-  var mytime = setInterval(function() {
-    $('#mime').tagsinput('add', 'js,css,png,jpg,jpeg,gif,ico');
-    clearInterval(mytime);
-  }, 100);
-
-  //var obj;
-  $('#mime').on('change', function(event) {
-    var $element = $(event.target),
-    $container = $element.closest('.example');
-      if (!$element.data('tagsinput'))
-        return;
-        var val = $element.val();
-        if (val === null)
-          val = "null";
-          //$('code', $('pre.val', $container)).html(($.isArray(val) ? JSON.stringify(val) : "\"" + val.replace('"', '\\"') + "\""));
-          //$('code', $('pre.items', $container)).html(JSON.stringify($element.tagsinput('items')));
-          $('#mime1').val($(this).val().replace(/,/g,"|"));
-            $('#mimeh1').val($(this).val().replace(/,/g,"|"));
-    //obj = $(this).val();
-    //obj =   $(this).val();
-
-    //$('#mime1').val($(this).val());
-    //console.log(obj.replace(/,/g,"|"));
-
-  }).trigger('change');
-
 
   setInterval(function() {
     $.ajax({
@@ -122,6 +35,9 @@ $(document).ready(function() {
       dataType: 'json',
       contentType: 'application/json'
     });
+  }, 3000);
+
+  setInterval(function() {
     $.ajax({
       type: 'POST',
       url: '/conectmemtotal',
@@ -134,6 +50,9 @@ $(document).ready(function() {
       dataType: 'json',
       contentType: 'application/json'
     });
+  }, 3000);
+
+  setInterval(function() {
     $.ajax({
       type: 'POST',
       url: '/conectmemfree',
@@ -146,6 +65,9 @@ $(document).ready(function() {
       dataType: 'json',
       contentType: 'application/json'
     });
+  }, 3000);
+
+  setInterval(function() {
     $.ajax({
       type: 'POST',
       url: '/conectmemavail',
@@ -159,7 +81,6 @@ $(document).ready(function() {
       contentType: 'application/json'
     });
   }, 2000);
-
 
   $('#createHost').on('click', function(req, res) {
     $.ajax({
@@ -187,6 +108,7 @@ $(document).ready(function() {
       data: {},
       success: function(data) {
         console.log(data);
+        alert('Teste. ' + data.stdout);
       },
       dataType: 'json',
       contentType: 'application/json'
@@ -200,136 +122,15 @@ $(document).ready(function() {
       data: {},
       success: function(data) {
         console.log(data);
+        //console.log(data.message);
       },
       dataType: 'json',
       contentType: 'application/json'
     });
   });
 
-  //Load Balancer - Adicionar e Remover novos Campos
-  $(document).ready(function() {
-    var max_fields = 3; //maximum input boxes allowed
-    var wrapper = $(".input_fields_wrap"); //Fields wrapper
-    var add_button = $(".add_field_button"); //Add button ID
-    var x = 1; //initlal text box count
-    var y = 1;
-    $(add_button).click(function(e) { //on add input button click
-      e.preventDefault();
-      if (x < max_fields) { //max input box allowed
-        if (x == 1) {
-          $('#host3lb').remove();
-        }
-        if (x == 2) {
-          $('#host4lb').remove();
-        }
-        x++; //text box increment
-        y = x + 1;
-        //$(wrapper).append('<div><div class="input-group"><input type="text" class="form-control" placeholder="Server IP..." name="mytext[]"/><a href="#" class="remove_field"><span class="input-group-btn"><button id="remove" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> Remove</button></span></a></div></br></br></div>'); //add input box
-        $(wrapper).append('<div><input type="text" class="form-control" value="server www.sapo' + y + '.pt" name="mytext[]" id="host' + y + 'lb"/><a href="#" class="remove_field"><button id="remove" type="button" class="btn btn-danger">X Remove</span></button></a><br></br></div>'); //add input box
-      }
-    });
 
-    $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
-      e.preventDefault();
-      $(this).parent('div').remove();
-      x--;
-      if (x == 1) {
-        $(wrapper).append('<input type="hidden" class="form-control" id="host3lb" value="" mytext[] "">');
-      }
-      if (x == 2) {
-        $(wrapper).append('<input type="hidden" class="form-control" id="host4lb" value="" mytext[] "">');
-      }
-    })
-  });
 
-  $('#createLB').on('click', function(req, res) {
-    $.ajax({
-      type: 'POST',
-      url: '/hostlb',
-      data: JSON.stringify({
-        'filenamelb': $('#filenamelb').val(),
-        'host1lb': $('#host1lb').val(),
-        'host2lb': $('#host2lb').val(),
-        'host3lb': $('#host3lb').val(),
-        'host4lb': $('#host4lb').val(),
-        'portlb': $('#portlb').val(),
-        'destinationlb': $('#destinationlb').val(),
-        'cachelb': $('#cachelb').is(':checked')
-      }),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
-  });
-  // Redirects OPT1
-  $('#createRedirOpt1').on('click', function(req, res) {
-    $.ajax({
-      type: 'POST',
-      url: '/hostopt1',
-      data: JSON.stringify({
-        'hostop1': $('#filenameopt1').val(),
-        'host1opt1': $('#host1opt1').val(),
-        'host2opt1': $('#host2opt1').val(),
-        'portopt1': $('#portopt1').val(),
-        'destinationopt1': $('#destinationopt1').val(),
-        'cacheopt1': $('#cacheopt1').is(':checked'),
-        'proxyopt1': $('#destinationopt1').val()
-      }),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
-  });
-
-  // Redirects OPT2
-  $('#createRedirOpt2').on('click', function(req, res) {
-    $.ajax({
-      type: 'POST',
-      url: '/hostopt2',
-      data: JSON.stringify({
-        'hostop2': $('#filenameopt2').val(),
-        'host1opt2': $('#host1opt2').val(),
-        'host2opt2': $('#host2opt2').val(),
-        'portopt2': $('#portopt2').val(),
-        'destinationopt2': $('#destinationopt2').val(),
-        'cacheopt2': $('#cacheopt2').is(':checked'),
-        'proxyopt2': $('#destinationopt2').val()
-      }),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
-  });
-
-  // Redirects OPT3
-  $('#createRedirOpt3').on('click', function(req, res) {
-    $.ajax({
-      type: 'POST',
-      url: '/hostopt3',
-      data: JSON.stringify({
-        'hostop3': $('#filenameopt3').val(),
-        'host1opt3': $('#host1opt3').val(),
-        'host2opt3': $('#host2opt3').val(),
-        'portopt3': $('#portopt3').val(),
-        'destinationopt3': $('#destinationopt3').val(),
-        'cacheopt3': $('#cacheopt3').is(':checked'),
-        'proxyopt3': $('#destinationopt3').val()
-      }),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
-  });
-
-  // Multiplos VHOST'S
   var button = '<button class="close" type="button" title="Remove this page">&nbsp× </button>';
   var tabID = 1;
 
@@ -350,13 +151,13 @@ $(document).ready(function() {
     $('#tab-list').append(
       $('<li><a href="#tab' + tabID + '" role="tab" data-toggle="tab">Configuração ' + tabID + '<button class="close" type="button" title="Remove this page">×</button></a></li>'));
     $('#tab-content').append(
-      $('<div class="tab-pane fade" id="tab' + tabID + '"><h3>Configuração ' + tabID + '</h3><p>' + '</p><div class="form-group"><label for="host">Host:</label><input type="text" class="form-control" id="hosts" value="xpto' + tabID + '.pt"></div><div class="form-group"><label for="port">Port:</label><input type="text" class="form-control" id="ports" value="80"></div><div class="form-group"><label for="destination">Destination:</label><input type="text" class="form-control" id="destinations" value="http://127.0.0.1:3000"></div><div class="checkbox"><label><input type="checkbox" id="caches"> Static assets cache</label></div></div>'));
+      $('<div class="tab-pane fade" id="tab' + tabID + '"><h3>Configuração ' + tabID + '</h3><p>' + '</p><div class="form-group"><label for="hosts">Host:</label><input type="text" class="form-control" id="hosts" value="xpto' + tabID + '.pt"></div><div class="form-group"><label for="port">Port:</label><input type="text" class="form-control" id="ports" value="80"></div><div class="form-group"><label for="destination">Destination:</label><input type="text" class="form-control" id="destinations" value="http://127.0.0.1:3000"></div><div class="checkbox"><label><input type="checkbox" id="caches"> Static assets cache</label></div></div>'));
   });
   $('#tab-list').on('click', '.close', function() {
 
     var tabID1 = $(this).parents('a').attr('href');
-    console.log(tabID - 1);
-    tabIDs = tabID - 1;
+    console.log(tabID-1);
+    tabIDs  = tabID -1;
     $(this).parents('li').remove();
     $(tabID1).remove();
     //display first tab
@@ -367,73 +168,32 @@ $(document).ready(function() {
 
   var list = document.getElementById("tab-list");
 
-  $("#createHosts").button().on("click", function() {
-    hostcreate()
-  })
+    $('#createHosts').click(function(req, res) {
+        var portss;
+        var destinationss;
+        var hostss;
+        var cachess;
+        for (i=1;i<=JSON.stringify(tabIDs);i++){
 
-  function hostcreate() {
-    var count = 0;
-    //Nº de valores dentro do array
-
-    $("#tabs").each(function() {
-      //$(this).find(".nav-tabs li").each(function(index, element) {
-      count = 0;
-      conta = 1;
-      var valor1;
-      var valor2;
-      var valor3;
-      var valor4;
-      var valor5;
-      $("form#teste input").each(function(index, element) {
-        if (conta == 1) {
-          a = $(this).val();
-          console.log('valor:' + a);
-          console.log('Conta:' + conta);
-          valor1 = a;
-        } else if (conta == 2) {
-          a = $(this).val();
-          console.log('valor:' + a);
-          console.log('Conta:' + conta);
-          valor2 = a;
-        } else if (conta == 3) {
-          a = $(this).val();
-          console.log('valor:' + a);
-          console.log('Conta:' + conta);
-          valor3 = a;
-        } else if (conta == 4) {
-          a = $(this).val();
-          console.log('valor:' + a);
-          console.log('Conta:' + conta);
-          valor4 = a;
-        } else if (conta == 5) {
-          a = $(this).is(':checked');
-          console.log('valor:' + a);
-          console.log('Conta:' + conta);
-          valor5 = a;
-        };
-        conta = conta + 1;
-        if (conta > 4) {
-          conta = 1;
-          $.ajax({
-            type: 'POST',
-            url: '/host',
-            data: JSON.stringify({
-              'host': valor1,
-              'port': valor2,
-              'mimeh': valor3,
-              'destination': valor4,
-              'cache': $(this).is(':checked'),
-              'proxy': valor5
-            }),
-            success: function(data) {
-              console.log(data);
-            },
-            dataType: 'json',
-            contentType: 'application/json'
-          });
-        };
-        count = count + 1;
-      });
+          portss = '#ports' + i;
+          destinationss = '#destinations' + i;
+          hostss = '#hosts' + i;
+          cachess = '#caches' + i;
+      $.ajax({
+        type: 'POST',
+        url: '/hosts',
+        data: JSON.stringify({
+          'host': $(hostss).val(),
+          'port': $(portss).val(),
+          'destination': $(destinationss).val(),
+          'cache': $(cachess).is(':checked')
+        }),
+        success: function(data) {
+          console.log(data);
+        },
+        dataType: 'json',
+        contentType: 'application/json'
     });
   };
+    });
 });
