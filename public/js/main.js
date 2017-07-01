@@ -351,10 +351,9 @@ $(document).ready(function() {
       $('<li><a href="#tab' + tabID + '" role="tab" data-toggle="tab">Configuração '
       + tabID + '<button class="close" type="button" title="Remove this page">×</button></a></li>'));
       $('#tab-content').append($('<div class="tab-pane fade" id="tab'
-      + tabID + '"><form id="teste"><p>' + '</p><div class="form-group"><label for="host">Host:</label><div class="form-input"><input type="text" class="form-control" id="host'
-      + tabID + '" value="xpto'
+      + tabID + '"><form id="teste"><p>' + '</p><div class="form-group"><label for="host">Host:</label><div class="form-input"><input type="text" class="form-control" id="host'+ tabID + '" value="xpto'
       + tabID + '.pt" name="host"></div></div><div class="form-group"><label for="port">Port:</label><div class="form-input"><input type="text" class="form-control" id="port'
-      + tabID + '" value="80"></div></div><div class="form-group"><label for="mime">Mime Types:</label><div class="form-group"><input type="text" class="form-control" id="mimeh1'+ tabID + '" value='+ $(this().parent().val()) +' disabled="disabled"><span class="input-group-btn"><a type="button" class="btn btn-primary" href="#mimes" data-toggle="modal">ADD MIMES</a></span></div></div><div class="form-group"><label for="destination">Destination:</label><div class="form-input"><input type="text" class="form-control" id="destination'+ tabID +'" value="http://127.0.0.1:300'+ tabID +'"></div></div><div class="checkbox"><label><div class="form-input"><input type="checkbox" id="cachemv'+ tabID + '"> Static assets cache</div></label></div></form></div>'));
+      + tabID + '" value="80"></div></div><div class="form-group"><label for="mime">Mime Types:</label><div class="form-group"><input type="text" class="form-control" id="mimeh1" value="'+ $(this().parent().val()) + tabID +'" disabled="disabled"><span class="input-group-btn"><a type="button" class="btn btn-primary" href="#mimes" data-toggle="modal">ADD MIMES</a></span></div></div><div class="form-group"><label for="destination">Destination:</label><div class="form-input"><input type="text" class="form-control" id="destination'+ tabID +'" value="http://127.0.0.1:300'+ tabID +'"></div></div><div class="checkbox"><label><div class="form-input"><input type="checkbox" id="cachemv'+ tabID + '"> Static assets cache</div></label></div></form></div>'));
     });
 
   $('#tab-list').on('click', '.close', function() {
