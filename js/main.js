@@ -81,7 +81,7 @@ var tabIDs;
       dataType: 'json',
       contentType: 'application/json'
     });
-  }, 3000);
+  }, 2000);
 
   $('#createHost').on('click', function(req, res) {
     $.ajax({
@@ -91,7 +91,8 @@ var tabIDs;
         'host': $('#host').val(),
         'port': $('#port').val(),
         'destination': $('#destination').val(),
-        'cache': $('#cache').is(':checked')
+        'cache': $('#cache').is(':checked'),
+        'proxy': $('#destination').val()
       }),
       success: function(data) {
         console.log(data);
