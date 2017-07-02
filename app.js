@@ -299,7 +299,6 @@ app.post('/host', function(req, res) {
   });
 });
 
-
 //Load Balancing
 app.post('/hostlb', function(req, res) {
   //console.log(req.body);

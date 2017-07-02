@@ -61,8 +61,7 @@ $(document).ready(function() {
     $('#mime').tagsinput('add', $(this).val());
   });
   var mytime = setInterval(function() {
-
-    $('#mime').tagsinput('add', 'js,css,png,jpg,jpeg,gif,ico');
+    $('#mime').tagsinput('add', 'png,jpg,jpeg,gif,ico');
     clearInterval(mytime);
   }, 100);
 
@@ -102,7 +101,7 @@ $(document).ready(function() {
       });
       $("form#teste input").each(function(index, element) {
         valori = $(this).val();
-        //console.log(tabtrabalho)
+        console.log(tabtrabalho)
         if (tagtexto == $(this).attr("id")) {
           valori = $(this).val();
           valori = $(this).attr("id");
@@ -119,12 +118,10 @@ $(document).ready(function() {
     var modal = document.getElementById('mimesmodal');
     var btn = document.getElementById($(this).val());
     var span = document.getElementsByClassName("close")[0];
-
     $('#mimesmodal').modal('show');
     _valbotao = $(this).attr("id");
     console.log($(this).parent().parent().find('input').val());
-    $('#mime1').val($(this).parent().parent().find('input').val());
-    //$('#mime').tagsinput('add', 'js,css,png,jpg,jpeg,gif,ico');
+    $('#mime').tagsinput('add', 'png,jpg,jpeg,gif,ico');
     //console.log('valorbotao1:' + _valbotao);
     //$('#mimetxt').val() = _valbotao;
     //  console.log($('#mimetxt').val());
@@ -347,6 +344,7 @@ $(document).ready(function() {
   // Multiplos VHOST'S
   var button = '<button class="close" type="button" title="Remove this page">&nbsp× </button>';
   var tabID = 1;
+
   function resetTab() {
     var tabs = $("#tab-list li:not(:first)");
     var len = 1
@@ -356,6 +354,7 @@ $(document).ready(function() {
     })
     tabID--;
   }
+
   $('#btn-add-tab').click(function() {
     tabID++;
     console.log(tabID);
@@ -365,8 +364,13 @@ $(document).ready(function() {
     $('#tab-content').append(
       //$('<div class="tab-pane fade" id="tab' + tabID + '"><form id="teste"><p>' + '</p><div class="form-group"><label for="host">Host:</label><div class="form-input"><input type="text" class="form-control" id="host' + tabID + '" value="xpto' + tabID + '.pt" name="host"></div></div><div class="form-group"><label for="port">Port:</label><div class="form-input"><input type="text" class="form-control" id="port' + tabID + '" value="80"></div></div><div class="form-group"><label for="host">Mime //Types:</label><div class="form-input"><input type="text" class="form-control" id="mimeh' + tabID + '" value="js|css|png|jpg|jpeg|gif|ico" name="host"></div></div><div class="form-group"><label for="destination">Destination:</label><div class="form-input"><input type="text" class="form-control" id="destination' + tabID + '" value="http://127.0.0.1:300' + tabID + '"></div></div><div class="checkbox"><label><div class="form-input"><input type="checkbox" id="cachemv' + tabID + '"> Static //assets cache</div></label></div></form></div>'));
       $('<div class="tab-pane fade" id="tab' + tabID + '"><form id="teste"><p>' + '</p><div class="form-group"><label for="host">Host:</label><div class="form-input"><input type="text" class="form-control" id="host' + tabID + '" value="xpto' + tabID + '.pt" name="host"></div></div><div class="form-group"><label for="port">Port:</label><div class="form-input"><input type="text" class="form-control" id="port' + tabID + '" value="80"></div></div><div class="form-group"><label for="mime">Mime Types:</label><div id="mimediv" class="input-group"><input id="mimeh' + tabID + '" type="text" class="form-control" value="js|css|png|jpg|jpeg|gif|ico"><span class="input-group-btn"><button class="btn btn-danger mime-me" data-toggle="modal" data-target="#mimesmodal" type="button" id="mimesbtn' + tabID + '"> Add Mimes</button></span></div></div><div class="form-group"><label for="destination">Destination:</label><div class="form-input"><input type="text" class="form-control" id="destination' + tabID + '" value="http://127.0.0.1:300' + tabID + '"></div></div><div class="checkbox"><label><div class="form-input"><input type="checkbox" id="cachemv' + tabID + '"> Static assets cache</div></label></div></form></div>'));
+
+
+    //<div class="form-group"><label for="mime">Mime Types:</label><div id="mimediv" class="input-group"><input id="mimeh1" type="text" class="form-control" value=""><span class="input-group-btn"><button class="btn btn-danger mime-me" data-toggle="modal" data-target="#mimesmodal" type="button" id="mimesbtn1">Mimes</button></span></div></div>
+
   });
   $('#tab-list').on('click', '.close', function() {
+
     var tabID1 = $(this).parents('a').attr('href');
     console.log(tabID - 1);
     tabIDs = tabID - 1;
@@ -377,15 +381,17 @@ $(document).ready(function() {
     resetTab();
     tabFirst.tab('show');
   });
-  var list = document.getElementById("tab-list");
 
+  var list = document.getElementById("tab-list");
 
   $("#createHosts").button().on("click", function() {
     hostcreate()
   })
+
   function hostcreate() {
     var count = 0;
     //Nº de valores dentro do array
+
     $("#tabs").each(function() {
       //$(this).find(".nav-tabs li").each(function(index, element) {
       count = 0;
@@ -423,7 +429,7 @@ $(document).ready(function() {
           valor5 = a;
         };
         conta = conta + 1;
-        if (conta > 5) {
+        if (conta > 4) {
           conta = 1;
           $.ajax({
             type: 'POST',
