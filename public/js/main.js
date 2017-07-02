@@ -434,7 +434,7 @@ $(document).ready(function() {
               'mimeh': valor3,
               'destination': valor4,
               'cache': $(this).is(':checked'),
-              'proxy': valor5
+              'proxy': valor4
             }),
             success: function(data) {
               console.log(data);
