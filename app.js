@@ -281,7 +281,6 @@ app.post('/host', function(req, res) {
     'PORT': req.body.port,
     'MIME': req.body.mimeh,
     'PROXY': req.body.destination,
-    //'CACHE': req.body.cache === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
     'CACHE': req.body.cache === true ? 'include /etc/nginx/mime.types;' : '',
     'PROXY2': req.body.proxy
   });
@@ -310,7 +309,6 @@ app.post('/hostlb', function(req, res) {
     'SERVERNAME3': req.body.host3lb,
     'SERVERNAME4': req.body.host4lb,
     'PORT': req.body.portlb,
-    //'CACHE': req.body.cachelb === true ? 'include /etc/nginx/dashboard/cache.conf;' : ''
     'CACHE': req.body.cachelb === true ? 'include /etc/nginx/mime.types;' : ''
 
   });
@@ -340,7 +338,6 @@ app.post('/hostopt1', function(req, res) {
     'SERVERNAMEHTTPS': req.body.host2opt1,
     'PORT': req.body.portopt1,
     'PROXY': req.body.destinationopt1,
-    //'CACHE': req.body.cacheopt1 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
     'CACHE': req.body.cacheopt1 === true ? 'include /etc/nginx/mime.types;' : '',
     'PROXY2': req.body.proxyopt1
   });
@@ -369,7 +366,6 @@ app.post('/hostopt2', function(req, res) {
     'SERVERNAMEWWW': req.body.host2opt2,
     'PORT': req.body.portopt2,
     'PROXY': req.body.destinationopt2,
-    //'CACHE': req.body.cacheopt2 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
     'CACHE': req.body.cacheopt2 === true ? 'include /etc/nginx/mime.types;' : '',
     'PROXY2': req.body.proxyopt2
   });
@@ -399,7 +395,6 @@ app.post('/hostopt3', function(req, res) {
     'SERVERDOMAIN': req.body.host2opt3,
     'PORT': req.body.portopt3,
     'PROXY': req.body.destinationopt3,
-    //'CACHE': req.body.cacheopt3 === true ? 'include /etc/nginx/dashboard/cache.conf;' : '',
     'CACHE': req.body.cacheopt3 === true ? 'include /etc/nginx/mime.types;' : '',
     'PROXY2': req.body.proxyopt3
   });
