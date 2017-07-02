@@ -1,7 +1,2 @@
 100-default.conf
 1-cache.conf
-1-loadbalancing.conf
-1-redirect.conf
-2-loadbalancing.conf
-2-redirect.conf
-3-redirect.conf
