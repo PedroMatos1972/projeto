@@ -43,17 +43,26 @@ $(document).ready(function() {
 
   $(document).on("click", ".remove-me", function() {
     console.log($(this).parent().parent().find('input').val());
-    $.ajax({
-      type: 'POST',
-      url: '/remover',
-      data: JSON.stringify({
-        'labelt': $(this).parent().parent().find('input').val()
-      }),
-      success: function(data) {
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    });
+
+    var hi= confirm("Do you really delete the file?");
+
+      if (hi== true){
+        $.ajax({
+          type: 'POST',
+          url: '/remover',
+          data: JSON.stringify({
+            'labelt': $(this).parent().parent().find('input').val()
+          }),
+          success: function(data) {
+          },
+          dataType: 'json',
+          contentType: 'application/json'
+        });
+      }else{
+          alert("No Problem...");
+      }
+
+
   });
 
   // MIME Types
@@ -240,7 +249,7 @@ $(document).ready(function() {
         x++; //text box increment
         y = x + 1;
         //$(wrapper).append('<div><div class="input-group"><input type="text" class="form-control" placeholder="Server IP..." name="mytext[]"/><a href="#" class="remove_field"><span class="input-group-btn"><button id="remove" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> Remove</button></span></a></div></br></br></div>'); //add input box
-        $(wrapper).append('<div><input type="text" class="form-control" value="server www.sapo' + y + '.pt" name="mytext[]" id="host' + y + 'lb"/><a href="#" class="remove_field"><button id="remove" type="button" class="btn btn-danger">X Remove</span></button></a><br></br></div>'); //add input box
+        $(wrapper).append('<div><input type="text" class="form-control" value="server host' + y + '.sapo.pt;" name="mytext[]" id="host' + y + 'lb"/><a href="#" class="remove_field"><button id="remove" type="button" class="btn btn-danger">X Remove</span></button></a><br></br></div>'); //add input box
       }
     });
 
