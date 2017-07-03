@@ -6,7 +6,6 @@ $(document).ready(function() {
   var texto;
   var valor = 0;
 
-  //$('#conectNginx').on('click', function(req, res) {
   setInterval(function() {
     $.ajax({
       type: 'POST',
@@ -61,8 +60,6 @@ $(document).ready(function() {
       }else{
           alert("No Problem...");
       }
-
-
   });
 
   // MIME Types
@@ -133,12 +130,6 @@ $(document).ready(function() {
     _valbotao = $(this).attr("id");
     console.log($(this).parent().parent().find('input').val());
     $('#mime1').val($(this).parent().parent().find('input').val());
-    //$('#mime').tagsinput('add', 'js,css,png,jpg,jpeg,gif,ico');
-    //console.log('valorbotao1:' + _valbotao);
-    //$('#mimetxt').val() = _valbotao;
-    //  console.log($('#mimetxt').val());
-    //console.log($('#mimesmodal').find('input').id('mimetext'));
-    //$('#mimesmodal').find('input').id('mimetext')= _valbotao;
   });
   // Grafico KNOB Ligacoes
   setInterval(function() {
