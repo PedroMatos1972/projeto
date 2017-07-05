@@ -6,6 +6,7 @@ $(document).ready(function() {
   var texto;
   var valor = 0;
 
+  //$('#conectNginx').on('click', function(req, res) {
   setInterval(function() {
     $.ajax({
       type: 'POST',
@@ -13,20 +14,21 @@ $(document).ready(function() {
       data: {},
       success: function(data) {
         arr = data.stdout;
-        texto = data.stdout;
-        var out = JSON.parse(texto);
-        out = JSON.stringify(out);
-        var out = JSON.parse(texto);
-        var out1 = out.length;
-        valor = out.length
-        for (var i = 0; i < out.length; i++) {
+        texto = data.stdout.toString();
+        var outxpto = JSON.stringify(texto);
+        outxpto = JSON.parse(outxpto);
+        var outxpto1 = JSON.parse(texto);
+        //console.log(outxpto1);
+        var out1 = outxpto1.length;
+        valor = outxpto1.length;
+        for (var i = 0; i < outxpto1.length; i++) {
           if (i >= 2) {
             //console.log(out[i]);
-            $('#ficheiros').append('<div><div id="rmv" class="input-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/><span class="input-group-btn"><button class="btn btn-danger remove-me" type="button" id="remove' + i + '">Remove</button></span></div></br></div>'); //add input box
+            $('#ficheiros').append('<div><div id="rmv" class="input-group"><input id="label' + i + '" type="text" class="form-control" value="' + (outxpto1[i]) + '"/><span class="input-group-btn"><button class="btn btn-danger remove-me" type="button" id="remove' + i + '">Remove</button></span></div></br></div>'); //add input box
           } else if (i == 1) {
-            $('#ficheiros').append('<div class="form-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/></div></div>'); //add input box
+            $('#ficheiros').append('<div class="form-group"><input id="label' + i + '" type="text" class="form-control" value="' + (outxpto1[i]) + '"/></div></div>'); //add input box
           } else if (i == 0) {
-            $('#ficheiros').html('<div><div class="form-group"><input id="label' + i + '" type="text" class="form-control" value="' + (out[i]) + '"/></div></div>'); //add input box
+            $('#ficheiros').html('<div><div class="form-group"><input id="label' + i + '" type="text" class="form-control" value="' + (outxpto1[i]) + '"/></div></div>'); //add input box
           };
         };
         atrib = 1;
